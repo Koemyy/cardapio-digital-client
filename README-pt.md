@@ -6,9 +6,9 @@
     Nosso projeto para o PI (projeto interdisciplinar) na Fatec-GTA.
 </p>
 
-## Selecione o Idioma: [English](https://github.com/JosimarBazilio/cardapio-digital-front/blob/main/README.md), **
+## Selecione o Idioma: **Portuguese** [English](https://github.com/JosimarBazilio/cardapio-digital-front/blob/main/README.md)
 
-Portuguese**
+
 
 ### Project Idea
 
