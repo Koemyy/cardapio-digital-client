@@ -14,8 +14,7 @@ The idea come from a bar where the menu was always outdated and it cause a littl
 always new customers confused with was or not in the menu.
 <br>
 So, our idea is, create a menu where the customers can scan a QR Code to acess the products and see in real time what's
-in the menu for the day, and they can pay the bill online, no need to call the bartender. They can also see the order
-status, if its already being prepared or its ready to eat!
+in the menu for the day, they can also see the order status, if its already being prepared or its ready to eat!
 <br>
 Now talking about the owner and its employees, they can also use our product!
 <br>
