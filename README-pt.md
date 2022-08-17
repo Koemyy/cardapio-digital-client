@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/84989572/184560260-5124f392-cb22-4153-a0b5-50303423aede.png" alt="Cardápo Digital" height="80"/>
+    <img src="https://user-images.githubusercontent.com/84989572/185191979-be0aa776-c3c8-43bb-8623-8ac7f6dac4c8.svg" alt="Cardápo Digital" height="80"/>
     <br />
     <strong>Cardápio Digital</strong>
     <br />
