@@ -4,16 +4,14 @@ interface Content {
     description: string,
 }
 
-function Products({name, price, description}: Content) {
+function Product({name, price, description}: Content) {
     return (
-        <div>
-            <p>{name}</p>
-            <div>
-                <p>R$ {price}</p>
-                <p>{description}</p>
-            </div>
+        <div className="flex text-center justify-center align-middle">
+            <p className="justify-between">{name}</p>
+            <p className="px-3">R$ {price}</p>
+            <p className="py-5"> {description}</p>
         </div>
     )
 }
 
-export default Products;
+export default Product;
