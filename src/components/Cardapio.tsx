@@ -41,7 +41,7 @@ function Cardapio() {
 			{
 				section.cardapio.map(cardapio => {
 					return (
-						<Section title={cardapio.sectionName} section={cardapio.products}></Section>
+						<Section key={cardapio.sectionName} title={cardapio.sectionName} section={cardapio.products}/>
 					);
 				})
 			}

@@ -19,7 +19,7 @@ function Section ({title, section}: CardapioContent) {
 				{
 					section.map(section => {
 						return (
-							<Product name={section.name}
+							<Product key={section.name} name={section.name}
 								price={section.price}
 								description={section.description}/>
 						);
