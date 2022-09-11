@@ -8,30 +8,34 @@ const section = {
 				{
 					'name': 'X-Bacon',
 					'price': '18,00',
-					'description': 'Diam in arcu cursus euismod. Ut faucibus pulvinar elementum integer enim neque volutpat ac tincidunt.'
+					'description': 'Diam in arcu cursus euismod. Ut faucibus pulvinar elementum integer enim neque volutpat ac tincidunt.',
+					'img': 'https://comeonburger.com.br/wp-content/uploads/2019/12/xbacon-especial.jpg',
+					'alt': 'Foto ilustrativa de um X-Bacon',
+					'tag': null
 				},
 				{
 					'name': 'X-Shimeji',
 					'price': '22,00',
-					'description': 'Turpis massa tincidunt dui ut ornare lectus sit. Sodales neque sodales ut etiam sit. Dolor sit amet consectetur adipiscing elit ut aliquam.'
-				}
-			]
+					'description': 'Turpis massa tincidunt dui ut ornare lectus sit. Sodales neque sodales ut etiam sit. Dolor sit amet consectetur adipiscing elit ut aliquam.',
+					'img': 'https://www.guiadasemana.com.br/contentFiles/image/opt_w1024h1024/2018/08/FEA/39043_lanche-de-cogumelos-do-bullguer.jpg',
+					'alt': 'Foto ilustrativa de um X-Shimeji',
+					'tag': null
+				},
+			],
 		},
 		{
 			'sectionName': 'Bebidas',
 			'products': [
 				{
-					'name': 'Lala',
-					'price': '20,00',
-					'description': 'Lala'
+					'name': 'Itubaina',
+					'price': '8,00',
+					'description': 'Placerat in egestas erat imperdiet sed euismod. Lobortis feugiat vivamus at augue eget.',
+					'img': 'https://revistasaboresdosul.com.br/wp-content/uploads/2015/01/brasil-kirin-expande-presenca-da-itubaina-no-brasil-640x474.jpg',
+					'alt': 'Foto ilustrativa de um refrigerante sabor tutti-frutti',
+					'tag': null
 				},
-				{
-					'name': 'Lulu',
-					'price': '17,00',
-					'description': 'Luuuuuu'
-				}
 			]
-		}
+		},
 	]
 };
 
