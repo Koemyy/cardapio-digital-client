@@ -1,4 +1,5 @@
 import Section from './Section';
+import Cards from './Cards';
 
 const section = {
 	'cardapio': [
@@ -6,7 +7,7 @@ const section = {
 			'sectionName': 'Lanches',
 			'products': [
 				{
-					'name': 'X-Bacon',
+					'name': 'Lanche com nome extremamente grande para fins de teste',
 					'price': '18,00',
 					'description': 'Diam in arcu cursus euismod. Ut faucibus pulvinar elementum integer enim neque volutpat ac tincidunt.',
 					'img': 'https://comeonburger.com.br/wp-content/uploads/2019/12/xbacon-especial.jpg',
@@ -36,6 +37,21 @@ const section = {
 				},
 			]
 		},
+	],
+	'cards': [
+		{
+			'sectionName': 'Promoções',
+			'products': [
+				{
+					'name': 'Medalhão de frango',
+					'price': '59,90',
+					'oldPrice': '79,00',
+					'description': 'Placerat in egestas erat imperdiet sed euismod. Lobortis feugiat vivamus at augue eget.',
+					'img': 'https://revistasaboresdosul.com.br/wp-content/uploads/2015/01/brasil-kirin-expande-presenca-da-itubaina-no-brasil-640x474.jpg',
+					'tag': null
+				},
+			]
+		}
 	]
 };
 
@@ -46,6 +62,19 @@ function Cardapio() {
 				section.cardapio.map(cardapio => {
 					return (
 						<Section key={cardapio.sectionName} title={cardapio.sectionName} section={cardapio.products}/>
+					);
+				})
+			}
+		</div>
+	);
+}
+export function CardapioCards() {
+	return (
+		<div>
+			{
+				section.cards.map(cards => {
+					return (
+						<Cards key={cards.sectionName} title={cards.sectionName} sectionCards={cards.products}/>
 					);
 				})
 			}
