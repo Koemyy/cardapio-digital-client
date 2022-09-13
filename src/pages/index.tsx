@@ -2,6 +2,7 @@ import type {NextPage} from 'next';
 import Head from 'next/head';
 import Cardapio from '../components/Cardapio';
 import Header from '../components/Header';
+import {CardapioCards} from '../components/Cardapio';
 
 
 const Home: NextPage = () => {
@@ -14,6 +15,7 @@ const Home: NextPage = () => {
 				<Header title="RockLand Bar" subtitle="Desde 1958"/>
 			</header>
 			<main>
+				<CardapioCards/>
 				<Cardapio/>
 			</main>
 		</div>
