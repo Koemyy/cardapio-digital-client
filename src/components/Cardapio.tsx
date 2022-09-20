@@ -47,7 +47,15 @@ const section = {
 					'price': '59,90',
 					'oldPrice': '79,00',
 					'description': 'Placerat in egestas erat imperdiet sed euismod. Lobortis feugiat vivamus at augue eget.',
-					'img': 'https://revistasaboresdosul.com.br/wp-content/uploads/2015/01/brasil-kirin-expande-presenca-da-itubaina-no-brasil-640x474.jpg',
+					'img': 'http://www.hojetemfrango.com.br/wp-content/uploads/2019/01/shutterstock_1125508784.jpg',
+					'tag': null
+				},
+				{
+					'name': 'Porção de batata frita',
+					'price': '21,90',
+					'oldPrice': '28,00',
+					'description': 'Placerat in egestas erat imperdiet sed euismod. Ut faucibus pulvinar consectetur adipiscing elit ut.',
+					'img': 'https://pubimg.band.uol.com.br/files/7ce45fcc850b7f1e4d5a.png',
 					'tag': null
 				},
 			]
@@ -68,6 +76,7 @@ function Cardapio() {
 		</div>
 	);
 }
+
 export function CardapioCards() {
 	return (
 		<div>
