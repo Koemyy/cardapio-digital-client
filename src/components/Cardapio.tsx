@@ -64,7 +64,7 @@ const section = {
 					'price': '69,90',
 					'oldPrice': '49,00',
 					'description': 'Placerat in egestas erat imperdiet sed euismod. Ut faucibus pulvinar consectetur adipiscing elit ut.',
-					'img': 'https://images.aws.nestle.recipes/resized/4204bf964018004a8d7f031aadda7e52_bolo-red-velvet-receitas-nestle_1200_600.jpg',
+					'img': 'https://img.sndimg.com/food/image/upload/q_92,fl_progressive,w_1200,c_scale/v1/img/recipes/89/72/z1waTloRRUeZkdkAPS7A_rvcc1.jpg',
 					'tag': null
 				}
 			]

@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 				<Header title="RockLand Bar" subtitle="Desde 1958"/>
 			</header>
 			<main>
-				<div className="flex justify-center">
+				<div className="flex justify-center whitespace-nowrap overflow-hidden">
 					<Sections/>
 				</div>
 				<div className="flex justify-center align-middle items-center">
