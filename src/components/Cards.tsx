@@ -20,7 +20,7 @@ function Cards({title, sectionCards}: CardsCarousel) {
 		<div>
 			<h1 className="text-orange-500 flex text-xl py-5 font-bold justify-center items-center">{title}</h1>
 			<div className="flex">
-				<Carousel showStatus={false} showThumbs={false} showIndicators={false} infiniteLoop={true} className="inline-block">
+				<Carousel showArrows={true} autoPlay={true} interval={5000} showStatus={false} showThumbs={false} showIndicators={false} infiniteLoop={true} className="inline-block">
 					{
 						sectionCards.map(sectionCards => {
 							return (

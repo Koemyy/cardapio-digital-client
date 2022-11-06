@@ -1,4 +1,5 @@
 import Bars from './Bars';
+import {Carousel} from 'react-responsive-carousel';
 
 interface SectionBars {
     bars: BarsContent[],
@@ -6,19 +7,21 @@ interface SectionBars {
 
 interface BarsContent {
     name: string,
-	cor: string,
+    cor: string,
 }
 
 function BarsSection({bars}: SectionBars) {
 	return (
 		<div>
-			{
-				bars.map((bars, index) => {
-					return (
-						<Bars key={index} name={bars.name} cor={bars.cor}/>
-					);
-				})
-			}
+			<Carousel autoPlay={true}>
+				{
+					bars.map((bars, index) => {
+						return (
+							<Bars key={index} name={bars.name} cor={bars.cor}/>
+						);
+					})
+				}
+			</Carousel>
 		</div>
 	);
 }
