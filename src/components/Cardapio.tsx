@@ -1,5 +1,6 @@
 import Section from './Section';
 import Cards from './Cards';
+import Bars from './Bars';
 
 const section = {
 	'cardapio': [
@@ -20,7 +21,7 @@ const section = {
 					'description': 'Turpis massa tincidunt dui ut ornare lectus sit. Sodales neque sodales ut etiam sit. Dolor sit amet consectetur adipiscing elit ut aliquam.',
 					'img': 'https://www.guiadasemana.com.br/contentFiles/image/opt_w1024h1024/2018/08/FEA/39043_lanche-de-cogumelos-do-bullguer.jpg',
 					'alt': 'Foto ilustrativa de um X-Shimeji',
-					'tag': null
+					'tag': null,
 				},
 			],
 		},
@@ -40,7 +41,7 @@ const section = {
 	],
 	'cards': [
 		{
-			'sectionName': 'Promoções',
+			'sectionName': 'TUDO 25% OFF!',
 			'products': [
 				{
 					'name': 'Medalhão de frango',
@@ -58,7 +59,37 @@ const section = {
 					'img': 'https://pubimg.band.uol.com.br/files/7ce45fcc850b7f1e4d5a.png',
 					'tag': null
 				},
+				{
+					'name': 'Red velvet',
+					'price': '69,90',
+					'oldPrice': '49,00',
+					'description': 'Placerat in egestas erat imperdiet sed euismod. Ut faucibus pulvinar consectetur adipiscing elit ut.',
+					'img': 'https://images.aws.nestle.recipes/resized/4204bf964018004a8d7f031aadda7e52_bolo-red-velvet-receitas-nestle_1200_600.jpg',
+					'tag': null
+				}
 			]
+		}
+	],
+	'sections': [
+		{
+			'nome': 'Inicio',
+			'cor': '#ffffff'
+		},
+		{
+			'nome': 'Lanches',
+			'cor': '#FEB803'
+		},
+		{
+			'nome': 'Bebidas',
+			'cor': '#FE0303'
+		},
+		{
+			'nome': 'Açaí',
+			'cor': '#781C68'
+		},
+		{
+			'nome': 'Sobremesa',
+			'cor': '#FF8FB1'
 		}
 	]
 };
@@ -84,6 +115,20 @@ export function CardapioCards() {
 				section.cards.map(cards => {
 					return (
 						<Cards key={cards.sectionName} title={cards.sectionName} sectionCards={cards.products}/>
+					);
+				})
+			}
+		</div>
+	);
+}
+
+export function Sections() {
+	return (
+		<div>
+			{
+				section.sections.map((sections, index) => {
+					return (
+						<Bars key={index} name={sections.nome} cor={sections.cor}/>
 					);
 				})
 			}
