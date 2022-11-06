@@ -13,11 +13,11 @@ const Home: NextPage = () => {
 			</Head>
 			<header>
 				<Header title="RockLand Bar" subtitle="Desde 1958"/>
+			</header>
+			<main>
 				<div className="flex justify-center">
 					<Sections/>
 				</div>
-			</header>
-			<main>
 				<div className="flex justify-center align-middle items-center">
 					<CardapioCards/>
 				</div>

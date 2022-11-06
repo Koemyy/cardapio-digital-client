@@ -90,6 +90,10 @@ const section = {
 		{
 			'nome': 'Sobremesa',
 			'cor': '#FF8FB1'
+		},
+		{
+			'nome': 'Pizza',
+			'cor': '#FD841F'
 		}
 	]
 };
