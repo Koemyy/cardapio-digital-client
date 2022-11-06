@@ -92,8 +92,8 @@ const section = {
 			'cor': '#FF8FB1'
 		},
 		{
-			'nome': 'Sobremesa',
-			'cor': '#FF8FB1'
+			'nome': 'Pizza',
+			'cor': '#FD841F'
 		}
 	]
 };

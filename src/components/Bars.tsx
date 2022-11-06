@@ -1,6 +1,7 @@
 import {Property} from 'csstype';
 import Color = Property.Color;
 import BarsSection from './BarsSection';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 
 interface BarsSection {
     name: string,

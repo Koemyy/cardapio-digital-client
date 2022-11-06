@@ -1,5 +1,6 @@
 import Bars from './Bars';
 import {Carousel} from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 
 interface SectionBars {
     bars: BarsContent[],
@@ -13,7 +14,7 @@ interface BarsContent {
 function BarsSection({bars}: SectionBars) {
 	return (
 		<div>
-			<Carousel autoPlay={true}>
+			<Carousel>
 				{
 					bars.map((bars, index) => {
 						return (
