@@ -12,7 +12,7 @@ interface CardsContent {
 function CardsCarousel({name, price, oldPrice, img}: CardsContent) {
 	return (
 		<div className="cursor-pointer lg:w-full hover:border-4 border-white-300 ease-in-out duration-100 relative my-5 align-middle">
-			<img className="cursor-pointer lg:w-[1200px] lg:h-[500px] h-full w-[400] object-cover" src={img}/>
+			<img className="cursor-pointer lg:w-[1700px] lg:h-[650px] h-full w-[400] object-cover" src={img}/>
 			<div className="absolute bottom-0 left-0 right-0 px-4 py-4 bg-black-500 opacity-90">
 				<div className="lg:flex lg:justify-between lg:items-center">
 					<h3 className="text-xl text-white-300 font-bold">{name}</h3>
