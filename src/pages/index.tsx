@@ -4,7 +4,7 @@ import Cardapio from '../components/Cardapio';
 import Header from '../components/Header';
 import {CardapioCards} from '../components/Cardapio';
 import {Sections} from '../components/Cardapio';
-import Cart from '../components/Cart';
+import CartIcon from '../components/CartIcon';
 const Home: NextPage = () => {
 	return (
 		<div className="bg-black-500">
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
 					<CardapioCards/>
 				</div>
 				<Cardapio/>
-				<Cart/>
+				<CartIcon/>
 			</main>
 		</div>
 	);
