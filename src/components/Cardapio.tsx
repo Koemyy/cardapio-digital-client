@@ -15,7 +15,7 @@ const section = {
 					'description': 'Diam in arcu cursus euismod. Ut faucibus pulvinar elementum integer enim neque volutpat ac tincidunt.',
 					'img': 'https://comeonburger.com.br/wp-content/uploads/2019/12/xbacon-especial.jpg',
 					'alt': 'Foto ilustrativa de um X-Bacon',
-					'tag': null,
+					'tag': 'Teste',
 					'ingredient': [
 						'Teste1',
 						'Teste2',
@@ -30,7 +30,7 @@ const section = {
 					'description': 'Turpis massa tincidunt dui ut ornare lectus sit. Sodales neque sodales ut etiam sit. Dolor sit amet consectetur adipiscing elit ut aliquam.',
 					'img': 'https://www.guiadasemana.com.br/contentFiles/image/opt_w1024h1024/2018/08/FEA/39043_lanche-de-cogumelos-do-bullguer.jpg',
 					'alt': 'Foto ilustrativa de um X-Shimeji',
-					'tag': null,
+					'tag': 'Teste',
 					'ingredient': [
 						'Teste1',
 						'Teste2',
@@ -50,7 +50,7 @@ const section = {
 					'description': 'Placerat in egestas erat imperdiet sed euismod. Lobortis feugiat vivamus at augue eget.',
 					'img': 'https://revistasaboresdosul.com.br/wp-content/uploads/2015/01/brasil-kirin-expande-presenca-da-itubaina-no-brasil-640x474.jpg',
 					'alt': 'Foto ilustrativa de um refrigerante sabor tutti-frutti',
-					'tag': null,
+					'tag': 'Teste',
 					'ingredient': null,
 					'serve': null,
 				},
@@ -69,6 +69,12 @@ const section = {
 					'description': 'Placerat in egestas erat imperdiet sed euismod. Lobortis feugiat vivamus at augue eget.',
 					'img': 'http://www.hojetemfrango.com.br/wp-content/uploads/2019/01/shutterstock_1125508784.jpg',
 					'tag': null,
+					'ingredient': [
+						'Teste1',
+						'Teste2',
+						'Teste3'
+					],
+					'serve': '2 pessoas'
 				},
 				{
 					'id': '02',
@@ -78,6 +84,12 @@ const section = {
 					'description': 'Placerat in egestas erat imperdiet sed euismod. Ut faucibus pulvinar consectetur adipiscing elit ut.',
 					'img': 'https://pubimg.band.uol.com.br/files/7ce45fcc850b7f1e4d5a.png',
 					'tag': null,
+					'ingredient': [
+						'Teste1',
+						'Teste2',
+						'Teste3'
+					],
+					'serve': '2 pessoas'
 				},
 				{
 					'id': '03',
@@ -171,7 +183,7 @@ export function ProductPageContent() {
 	return (
 		<div>
 			{
-				section.cardapio.map((products) => {
+				section.cards.map((products) => {
 					return (
 						products.products.map((productsDeep, index) => {
 							return (
