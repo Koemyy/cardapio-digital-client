@@ -1,4 +1,4 @@
-import {AiFillShopping} from 'react-icons/ai';
+import {ShoppingBag} from 'phosphor-react';
 import Link from 'next/link';
 
 function CartIcon() {
@@ -7,7 +7,7 @@ function CartIcon() {
 			<div
 				className="py-5 px-5 bg-grey-300 rounded-full cursor-pointer ease hover:ease-in-out duration-300 hover:bg-white-300 drop-shadow-lg">
 				<Link href="/cart">
-					<AiFillShopping/>
+					<ShoppingBag/>
 				</Link>
 			</div>
 		</div>
