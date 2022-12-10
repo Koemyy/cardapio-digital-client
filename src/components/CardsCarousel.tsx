@@ -1,4 +1,5 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Link from 'next/link';
 
 interface CardsContent {
     id: string,
@@ -12,7 +13,7 @@ interface CardsContent {
 
 function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 	return (
-		<a href={`./products/${id}`}>
+		<Link href={`./products/${id}`}>
 			<div
 				className="cursor-pointer lg:w-full hover:border-4 border-white-300 ease-in-out duration-100 relative my-5 align-middle">
 				<img className="cursor-pointer lg:w-[1700px] lg:h-[650px] h-full w-[400] object-cover" src={img}
@@ -25,7 +26,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 					</div>
 				</div>
 			</div>
-		</a>
+		</Link>
 	);
 }
 
