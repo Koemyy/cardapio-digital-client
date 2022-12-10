@@ -68,7 +68,7 @@ const section = {
 					'oldPrice': '79,00',
 					'description': 'Placerat in egestas erat imperdiet sed euismod. Lobortis feugiat vivamus at augue eget.',
 					'img': 'http://www.hojetemfrango.com.br/wp-content/uploads/2019/01/shutterstock_1125508784.jpg',
-					'tag': null,
+					'tag': 'Bacon',
 					'ingredient': [
 						'Teste1',
 						'Teste2',
@@ -83,7 +83,7 @@ const section = {
 					'oldPrice': '28,00',
 					'description': 'Placerat in egestas erat imperdiet sed euismod. Ut faucibus pulvinar consectetur adipiscing elit ut.',
 					'img': 'https://pubimg.band.uol.com.br/files/7ce45fcc850b7f1e4d5a.png',
-					'tag': null,
+					'tag': 'Vegetariano',
 					'ingredient': [
 						'Teste1',
 						'Teste2',
@@ -98,7 +98,7 @@ const section = {
 					'oldPrice': '49,00',
 					'description': 'Placerat in egestas erat imperdiet sed euismod. Ut faucibus pulvinar consectetur adipiscing elit ut.',
 					'img': 'https://img.sndimg.com/food/image/upload/q_92,fl_progressive,w_1200,c_scale/v1/img/recipes/89/72/z1waTloRRUeZkdkAPS7A_rvcc1.jpg',
-					'tag': null,
+					'tag': 'Doce',
 					'ingredient': [
 						'Teste1',
 						'Teste2',
