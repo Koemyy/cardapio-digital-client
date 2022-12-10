@@ -18,7 +18,7 @@ function Product({name, price, description, img, alt, tag}: Content) {
 					<p className="break-words text-orange-400 font-semibold">{name}</p>
 				</div>
 				<div className="flex items-center">
-					<p className="mb-3 text-green-500 border border-green-500 rounded px-5 mb-2">{tag}</p>
+					<p className="mb-3 text-white-300 rounded-full bg-orange-500 px-5 my-3">{tag}</p>
 				</div>
 				<p className="flex justify-center text-white-300"> {description}</p>
 				<div className="flex">
