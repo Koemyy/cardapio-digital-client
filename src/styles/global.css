@@ -12,6 +12,9 @@ body, input, textarea, select, button {
     font: 400 1rem 'Roboto', sans-serif;
 }
 
+body {
+    background-color: #232020;
+}
 button {
     cursor: pointer;
 }
