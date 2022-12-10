@@ -32,37 +32,37 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 
 	return (
 		<div className="justify-center items-center bg-black-500">
-			<div className="sm:w-48 md:w-48 lg:w-64 mx-5">
+			<div className="mx-5">
 				<div className="flex py-5">
 					<Link href="../products/01">
-						<div className="top-0 text-orange-400"><ArrowCircleLeft size={40}/></div>
+						<div className="top-0 text-orange-400 md:pt-1"><ArrowCircleLeft size={40}/></div>
 					</Link>
-					<h1 className="text-orange-400 text-3xl font-bold pl-3">Rockland Bar</h1>
+					<h1 className="text-orange-400 text-3xl font-bold pl-3 md:text-5xl">Rockland Bar</h1>
 				</div>
-				<div className="sm:w-48 md:w-48 lg:w-96">
+				<div className="">
 					<div
 						className="flex justify-between pt-5 underline underline-offset-4 decoration-orange-500 px-5 pb-3">
 						<p onClick={closePaymentHandler}
-							className="text-white-300 cursor-pointer text-">Selecionados</p>
-						<p onClick={openPaymentHandler} className="text-white-300 cursor-pointer">Pedidos</p>
+							className="text-white-300 cursor-pointer md:text-2xl">Selecionados</p>
+						<p onClick={openPaymentHandler} className="text-white-300 cursor-pointer md:text-2xl">Pedidos</p>
 					</div>
 				</div>
 				<div id="hidde">
 					<div className="flex pt-5">
-						<p className="text-white-300 text-xl">Lanches</p>
+						<p className="text-white-300 text-xl font-bold md:text-3xl">Lanches</p>
 					</div>
 					<div className="py-5 flex text-white-300 justify-between">
-						<p className="pr-5 pt-1">1x</p>
-						<p className="font-semibold text-lg w-56">X-Bacon</p>
-						<p className="pt-1">R$ 24,90</p>
+						<p className="pr-5 pt-1 md:text-xl">1x</p>
+						<p className="font-semibold text-lg w-56 md:text-2xl">X-Bacon</p>
+						<p className="pt-1 md:text-xl">R$ 24,90</p>
 					</div>
 					<div className="flex pt-5">
-						<p className="text-white-300 text-xl">Bebidas</p>
+						<p className="text-white-300 text-xl font-bold md:text-3xl">Bebidas</p>
 					</div>
 					<div className="py-5 flex text-white-300 justify-between">
-						<p className="pr-5 pt-1">1x</p>
-						<p className="font-semibold text-lg w-56">Coca-lata</p>
-						<p className="pt-1">R$ 5,50</p>
+						<p className="pr-5 pt-1 md:text-xl">1x</p>
+						<p className="font-semibold text-lg w-56 md:text-2xl">Coca-lata</p>
+						<p className="pt-1 md:text-xl">R$ 5,50</p>
 					</div>
 					<div className="flex justify-center items-center pt-3">
 						<Link href="../">
@@ -81,7 +81,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 							<p>R$ 30,40</p>
 						</div>
 						<div className="flex justify-between text-2xl">
-							<p>Total</p>
+							<p className="md:text-3xl">Total</p>
 							<p className="text-green-500">R$ 30,40</p>
 						</div>
 					</div>
@@ -99,7 +99,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 				</div>
 			</div>
 			{isPayment && (
-				<Payment onClick={openPaymentHandler}/>
+				<Payment/>
 			)}
 		</div>
 	);
