@@ -9,6 +9,7 @@ const section = {
 			'sectionName': 'Lanches',
 			'products': [
 				{
+					'id': '01',
 					'name': 'Lanche com nome extremamente grande para fins de teste',
 					'price': '18,00',
 					'oldPrice': '25,00',
@@ -24,6 +25,7 @@ const section = {
 					'serve': '2 pessoas'
 				},
 				{
+					'id': '02',
 					'name': 'X-Shimeji',
 					'price': '22,00',
 					'oldPrice': '30,00',
@@ -44,6 +46,7 @@ const section = {
 			'sectionName': 'Bebidas',
 			'products': [
 				{
+					'id': '03',
 					'name': 'Itubaina',
 					'price': '8,00',
 					'oldPrice': '10,00',
