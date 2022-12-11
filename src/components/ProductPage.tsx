@@ -6,13 +6,22 @@ import {useState} from 'react';
 
 interface ProductsContent {
     name: string,
-    price: string,
-    oldPrice: string,
+    price: number,
+    oldPrice: number,
     description: string,
     img: string,
-    tag: string | null,
-    ingredient: string[] | null,
-    serve: string | null,
+    tag?: Tags[]| null,
+    ingredient?: Ingredientes[] | null,
+    serve?: string | null,
+}
+
+interface Ingredientes {
+	ing_nome: string
+}
+
+interface Tags {
+	tag_nome: string,
+	tag_cor: string
 }
 
 function ProductPage({name, price, oldPrice, description, img, ingredient, tag, serve}: ProductsContent) {
@@ -49,17 +58,40 @@ function ProductPage({name, price, oldPrice, description, img, ingredient, tag, 
 							<div className="items-start pl-3 flex flex-col">
 								<h2 className="text-white-300 md:text-4xl flex py-3 text-2xl">{name}</h2>
 								<div className="flex pb-1">
-									<div className="text-lg mr-2 mb-4 md:text-2xl text-green-500">R$ {price}</div>
+									<div className="text-lg mr-2 mb-4 md:text-2xl text-green-500">R$ {price.toFixed(2)}</div>
 									<p
-										className="text-sm line-through text-white-300 decoration-white-300">R$ {oldPrice}</p>
+										className="text-sm line-through text-white-300 decoration-white-300">R$ {oldPrice.toFixed(2)}</p>
 								</div>
 								<p className="mb-5 text-white-300 md:text-xl">{description}</p>
-								<p className="text-white-300 md:text-xl">Ingredientes: {ingredient}</p>
-								<div className="flex rounded-full md:text-xl bg-orange-500 px-5 my-3">
-									<p className="text-white-300">{tag}</p>
+								
+								<p className="text-white-300 md:text-xl"> Ingredientes: </p>
+								<div className="text-white-300 md:text-xl">
+									{ingredient?.map((conteudo:any) =>
+									{
+										return(
+											<p key={conteudo.ing_id} className='ml-10'>{conteudo.ing_nome}</p>
+										) 
+									}
+									)}
 								</div>
+								
+								<div className="flex gap-2 pt-3">
+									{
+										tag?.map((conteudo:any) =>
+										{
+											return (
+												<p key={conteudo.tag_id} style= {{backgroundColor: conteudo.tag_cor}}className="flex rounded-full md:text-xl px-5 my-3 text-white-300">
+														{conteudo.tag_nome}
+												</p>
+											)
+										}
+										)
+									}
+								</div>
+
+
 								<div>
-									<p className="text-white-300 md:text-xl">{serve}</p>
+									<p className="text-white-300 md:text-xl pt-3">Serve: {serve} pessoa</p>
 								</div>
 							</div>
 							<Link href="../orders">

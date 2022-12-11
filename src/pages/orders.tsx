@@ -18,14 +18,14 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 
 	function openPaymentHandler() {
 		setPaymentIsOpen(true);
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		document.getElementById('hidde').style.display = 'none';
 	}
 
 	function closePaymentHandler() {
 		setPaymentIsOpen(false);
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		document.getElementById('hidde').style.display = 'block';
 	}

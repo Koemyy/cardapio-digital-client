@@ -9,7 +9,7 @@ interface Content {
     tag: string | null,
 }
 
-function Product({name, price, description, img, alt, tag, id}: Content) {
+function Product({name, price, description, img, alt, tag, id, desconto}: any) {
 	return (
 		<div className="flex justify-center items-center">
 			<Link href={`./products/${id}`}>
@@ -17,16 +17,28 @@ function Product({name, price, description, img, alt, tag, id}: Content) {
 					<img src={img} alt={alt}/>
 				</div>
 			</Link>
-			<div className="w-64 md:w-48 lg:w-96">
+			<div className="w-64 md:w-64 lg:w-96">
 				<div className="py-2">
 					<p className="break-words md:text-xl text-orange-400 font-semibold">{name}</p>
 				</div>
-				<div className="flex items-center">
-					<p className="mb-3 text-white-300 rounded-full bg-orange-500 px-5 md:text-lg my-3">{tag}</p>
+				<div className="flex items-center gap-3">
+					
+					{
+						tag?.map((conteudo:any) =>
+							{
+								return (
+									<p key={conteudo.tag_id} style= {{backgroundColor: conteudo.tag_cor}} className="flex rounded-full md:text-xl px-5 my-3 text-black font-bold">
+											{conteudo.tag_nome}
+									</p>
+								)
+							}
+							)
+						}
+					
 				</div>
-				<p className="flex justify-center md:text-lg text-white-300"> {description}</p>
+				<p className="flex justify-left md:text-lg text-white-300"> {description}</p>
 				<div className="flex">
-					<p className="text-white-300 md:text-xl font-bold py-2">R$ {price}</p>
+					<p className="text-white-300 md:text-xl font-bold py-2">R$ {(price - price * desconto/100).toFixed(2)}</p>
 				</div>
 			</div>
 		</div>

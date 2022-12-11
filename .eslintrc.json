@@ -1,4 +1,5 @@
-{
+/*{
+    /*
     "env": {
         "browser": true,
         "es2021": true,
@@ -22,14 +23,17 @@
         "@typescript-eslint"
     ],
     "rules": {
+        /*
         "indent": [
             "error",
             "tab"
         ],
+        /*
         "linebreak-style": [
             "error",
             "unix"
         ],
+        *
         "quotes": [
             "error",
             "single"
@@ -39,4 +43,13 @@
             "always"
         ]
     }
+    
 }
+*/
+{
+    "extends": "next",
+    "rules": {
+      "react/no-unescaped-entities": "off",
+      "@next/next/no-page-custom-font": "off"
+    }
+  }

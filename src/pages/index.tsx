@@ -1,11 +1,57 @@
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import Cardapio from '../components/Cardapio';
 import Header from '../components/Header';
-import {CardapioCards} from '../components/Cardapio';
-import {Sections} from '../components/Cardapio';
 import CartIcon from '../components/CartIcon';
-const Home: NextPage = () => {
+import Section from '../components/Section';
+import Cards from '../components/Cards';
+import Bars from '../components/Bars';
+
+interface Props{
+	cardapio: Sessao[]
+}
+interface Sessao {
+	ses_nome: string,
+	ses_cor: string
+}
+interface Produtos {
+	pro_id: number,
+	pro_nome: string,
+	pro_preco: number,
+	prm_desconto: number,
+	pro_descricao: string,
+	pro_imagem: string,
+	tags: Tag[]
+}
+
+interface Tag {
+	tag_id: number,
+	tag_nome: string,
+	tag_cor: string
+}
+
+export async function getStaticProps() {
+	
+	const cardapio= await fetch('http://localhost:3000/cardapio/')
+        .then(response => response.json())
+        .then((data) => {
+            return data
+    });
+
+	const promocao = await fetch('http://localhost:3000/cardapio/promocoes')
+        .then(response => response.json())
+        .then((data) => {
+            return data
+    });
+
+	return{
+		props:{
+			cardapio,
+			promocao
+		}
+	}
+}
+
+const Home: NextPage = (props:any) => {
 	return (
 		<div className="bg-black-500">
 			<Head>
@@ -16,13 +62,32 @@ const Home: NextPage = () => {
 			</header>
 			<main>
 				<div className="flex justify-center whitespace-nowrap overflow-hidden">
-					<Sections/>
+					{
+						props.cardapio.map((teste:any) => {
+							return (
+								<Bars key={teste.ses_id} name={teste.ses_nome} cor={teste.ses_cor}/>
+							);
+						})
+					}	
 				</div>
+				
 				<div className="flex justify-center align-middle items-center">
-					<CardapioCards/>
+				{
+					
+					<Cards key={props.promocao.prm_id} title={props.promocao.prm_nome} sectionCards={props.promocao.produtos}/>
+					
+				}
+				
 				</div>
-				<Cardapio/>
-				<CartIcon/>
+				
+				{
+					props.cardapio.map((teste:any) => {
+						return (
+							<Section key={teste.ses_id} title={teste.ses_nome} section={teste.produtos}/>
+						);
+					})
+				}
+				<CartIcon/>	
 			</main>
 		</div>
 	);

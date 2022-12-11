@@ -140,16 +140,18 @@ const section = {
 	]
 };
 
-function Cardapio() {
+
+
+function Cardapio(props:any[]|any) {
 	return (
 		<div>
 			{
-				section.cardapio.map(cardapio => {
-					return (
-						<Section key={cardapio.sectionName} title={cardapio.sectionName} section={cardapio.products}/>
-					);
-				})
-			}
+					props.map((teste:any) => {
+						return (
+							<Section key={teste.ses_id} title={teste.ses_nome} section={teste.produtos}/>
+						);
+					})
+				}
 		</div>
 	);
 }
@@ -182,27 +184,22 @@ export function Sections() {
 	);
 }
 
-export function ProductPageContent() {
+
+
+export function ProductPageContent(props: any) {
+
 	return (
 		<div>
-			{
-				section.cards.map((products) => {
-					return (
-						products.products.map((productsDeep, index) => {
-							return (
-								<ProductPage key={index} name={productsDeep.name}
-									price={productsDeep.price}
-									oldPrice={productsDeep.oldPrice}
-									description={productsDeep.description}
-									img={productsDeep.img}
-									tag={productsDeep.tag}
-									ingredient={productsDeep.ingredient} serve={productsDeep.serve}
-								/>
-							);
-						})
-					);
-				})
-			}
+		 <ProductPage name={props.pro_nome}
+			price={props.pro_preco - props.pro_preco * props.prm_desconto / 100}
+			oldPrice={props.pro_preco}
+			description={props.pro_descricao}
+			img={props.pro_imagem}
+			serve={props.pro_serve}
+			tag={props.tags}
+			ingredient={props.ingredientes}
+		/>
+			
 		</div>
 	);
 }

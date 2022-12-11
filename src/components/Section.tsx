@@ -15,17 +15,27 @@ interface Content {
 	tag: string | null,
 }
 
-function Section ({title, section}: CardapioContent) {
+/*
+/*
+			*/
+
+function Section ({title, section}: any) {
 	return (
-		<div>
+		<div  id={`${title}`}>
 			<h1 className="text-orange-700 flex text-xl py-5 font-bold justify-center md:text-2xl items-center">{title}</h1>
 			<div>
 				{
-					section.map(section => {
+					section.map((sec:any) => {
 						return (
-							<Product key={section.name} name={section.name} id={section.id}
-								price={section.price}
-								description={section.description} img={section.img} alt={section.alt} tag={section.tag}/>
+							<Product 
+								key={sec.pro_id}
+								id={sec.pro_id}
+								name={sec.pro_nome} 
+								price={sec.pro_preco}
+								desconto={sec.prm_desconto}
+								description={sec.pro_descricao}
+								img={sec.pro_imagem}
+								tag={sec.tags}/>
 						);
 					})
 				}

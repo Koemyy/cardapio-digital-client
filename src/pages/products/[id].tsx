@@ -6,14 +6,6 @@ interface Path extends GetStaticPaths {
 
 interface Params {
     id: string;
-	name: string,
-	price: string,
-	oldPrice: string,
-	description: string,
-	img: string,
-	tag: string | null,
-	ingredient: string[],
-	serve: string,
 }
 
 interface Props extends GetStaticProps {
@@ -21,42 +13,56 @@ interface Props extends GetStaticProps {
 }
 
 export async function getStaticPaths() {
+
+	const produtos= await fetch('http://localhost:3000/paths/')
+        .then(response => response.json())
+        .then((data) => {
+            return data
+    });
+
 	return {
-		paths: [
-			{
-				params: {
-					id: '01'
-				}
-			},
-			{
-				params: {
-					id: '02'
-				}
-			},
-			{
-				params: {
-					id: '03'
-				}
-			}
-		],
+		paths: produtos,
 		fallback: false
 	};
 }
 
 export async function getStaticProps(context: Path) {
-	const id = context.params.id;
-	return {
-		props: {
-			id: id,
+	
+	const produto= await fetch(`http://localhost:3000/produto/${context.params.id}`)
+        .then(response => response.json())
+        .then((data) => {
+            return data
+    });
+
+	return{
+		props:{
+			pro_id: produto.pro_id,
+			pro_nome: produto.pro_nome,
+			pro_preco: produto.pro_preco,
+  			prm_desconto: produto.prm_desconto,
+  			pro_descricao: produto.pro_descricao,
+			pro_serve: produto.pro_serve,
+  			pro_imagem: produto.pro_imagem,
+			tags: produto.tags,
+			ingredientes: produto.ingredientes
 		}
-	};
+	}
 }
 
-
-function Produtos(props: Props) {
+function Produtos(props: any) {
 	return (
 		<div>
-			<ProductPageContent/>
+			<ProductPageContent 
+				pro_id={props.pro_id}
+				pro_nome={props.pro_nome}
+				pro_preco={props.pro_preco}
+				prm_desconto={props.prm_desconto}
+				pro_descricao={props.pro_descricao}
+				pro_serve={props.pro_serve}
+				pro_imagem={props.pro_imagem}
+				tags={props.tags}
+				ingredientes={props.ingredientes}
+			/>
 		</div>
 	);
 }

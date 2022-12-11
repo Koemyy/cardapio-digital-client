@@ -4,8 +4,8 @@ import Link from 'next/link';
 interface CardsContent {
     id: string,
     name: string,
-    price: string,
-    oldPrice: string,
+    price: number,
+    oldPrice: number,
     description: string,
     img: string,
     tag?: string,
@@ -21,8 +21,8 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 				<div className="absolute bottom-0 left-0 right-0 px-4 py-4 bg-black-500 opacity-90">
 					<div className="lg:flex lg:justify-between lg:items-center">
 						<h3 className="text-xl text-white-300 font-bold">{name}</h3>
-						<p className="text-sm text-white-300 line-through">R$ {oldPrice}</p>
-						<p className="text-xl text-white-300">R$ {price}</p>
+						<p className="text-sm text-white-300 line-through">R$ {price.toFixed(2)}</p>
+						<p className="text-xl text-white-300">R$ {(price - price * oldPrice /100).toFixed(2)}</p>
 					</div>
 				</div>
 			</div>
