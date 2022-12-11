@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {ArrowCircleLeft} from 'phosphor-react';
-import QRCodeContent from './qrCode';
+import QRCodeContent from './QRCode';
 interface NotifyContent {
 	description: string,
 	closePopUp: any,
