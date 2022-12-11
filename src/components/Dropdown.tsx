@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {ArrowDown} from 'phosphor-react';
-import QrCode from './qrCode';
+import QrCode from './QRCode';
 import Notify from './notify';
 
 function Dropdown() {
