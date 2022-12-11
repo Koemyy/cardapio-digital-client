@@ -33,6 +33,8 @@ function PopUp () {
 			{sendMessage && (
 				<Notify
 					closePopUp={sendMessageFalse}
+					description="O atendente foi notificado e está a caminho da sua mesa!"
+					buttonText="Ok"
 				/>
 			)}
 		</div>
