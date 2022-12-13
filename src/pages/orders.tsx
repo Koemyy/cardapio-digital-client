@@ -34,7 +34,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 		<div className="justify-center items-center bg-black-500">
 			<div className="mx-5">
 				<div className="flex py-5">
-					<Link href="../products/01">
+					<Link href={`../`}>
 						<div className="top-0 text-orange-400 md:pt-1"><ArrowCircleLeft size={40}/></div>
 					</Link>
 					<h1 className="text-orange-400 text-3xl font-bold pl-3 md:text-5xl">Rockland Bar</h1>
@@ -43,8 +43,8 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 					<div
 						className="flex justify-between pt-5 underline underline-offset-4 decoration-orange-500 px-5 pb-3">
 						<p onClick={closePaymentHandler}
-							className="text-white-300 cursor-pointer md:text-2xl">Selecionados</p>
-						<p onClick={openPaymentHandler} className="text-white-300 cursor-pointer md:text-2xl">Pedidos</p>
+							className="text-white-300 cursor-pointer md:text-3xl">Selecionados</p>
+						<p onClick={openPaymentHandler} className="text-white-300 cursor-pointer md:text-3xl">Pedidos</p>
 					</div>
 				</div>
 				<div id="hidde">
@@ -70,7 +70,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 								className="border border-1 rounded-full px-5 py-3 cursor-pointer"
 								type="submit">
 								<label
-									className="text-white-300 text-lg drop-shadow-lg">Adicionar
+									className="text-white-300 text-lg md:text-2xl drop-shadow-lg">Adicionar
                                     mais itens</label>
 							</button>
 						</Link>
@@ -81,7 +81,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 							<p>R$ 30,40</p>
 						</div>
 						<div className="flex justify-between text-2xl">
-							<p className="md:text-3xl">Total</p>
+							<p className="md:text-4xl">Total</p>
 							<p className="text-green-500">R$ 30,40</p>
 						</div>
 					</div>
@@ -92,7 +92,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 							type="submit">
 							<label
 								onClick={openPaymentHandler}
-								className="text-white-300 text-lg drop-shadow-lg">Finalizar
+								className="text-white-300 text-lg md:text-2xl drop-shadow-lg">Finalizar
                                 pedido</label>
 						</button>
 					</div>

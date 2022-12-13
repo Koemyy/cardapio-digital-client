@@ -17,12 +17,12 @@ function Product({name, price, description, img, alt, tag, id, desconto}: any) {
 					<img src={img} alt={alt}/>
 				</div>
 			</Link>
-			<div className="w-64 md:w-64 lg:w-96">
+			<div className="w-72 md:w-80 lg:w-96">
 				<div className="py-2">
-					<p className="break-words md:text-xl text-orange-400 font-semibold">{name}</p>
+					<p className="break-words md:text-2xl text-orange-400 font-semibold">{name}</p>
 				</div>
-				<div className="flex items-center gap-3">
-					
+				<div className="flex items-center gap-3 break last:break-after-all">
+
 					{
 						tag?.map((conteudo:any) =>
 							{
@@ -34,7 +34,7 @@ function Product({name, price, description, img, alt, tag, id, desconto}: any) {
 							}
 							)
 						}
-					
+
 				</div>
 				<p className="flex justify-left md:text-lg text-white-300"> {description}</p>
 				<div className="flex">
