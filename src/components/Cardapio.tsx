@@ -190,7 +190,7 @@ export function ProductPageContent(props: any) {
 
 	return (
 		<div>
-		 <ProductPage name={props.pro_nome}
+		 <ProductPage key={props.pro_id} name={props.pro_nome}
 			price={props.pro_preco - props.pro_preco * props.prm_desconto / 100}
 			oldPrice={props.pro_preco}
 			description={props.pro_descricao}
@@ -199,7 +199,7 @@ export function ProductPageContent(props: any) {
 			tag={props.tags}
 			ingredient={props.ingredientes}
 		/>
-			
+
 		</div>
 	);
 }

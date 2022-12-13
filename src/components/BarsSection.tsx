@@ -12,19 +12,17 @@ interface BarsContent {
 }
 
 function BarsSection({bars}: SectionBars) {
-	return (
-		<div>
-			<Carousel>
-				{
-					bars.map((bars, index) => {
-						return (
-							<Bars key={index} name={bars.name} cor={bars.cor}/>
-						);
-					})
-				}
-			</Carousel>
-		</div>
-	);
+    return (
+        <div>
+            {
+                bars.map((bars, index) => {
+                    return (
+                        <Bars key={index} name={bars.name} cor={bars.cor}/>
+                    );
+                })
+            }
+        </div>
+    );
 }
 
 export default BarsSection;

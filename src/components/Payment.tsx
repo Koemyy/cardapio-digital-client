@@ -16,7 +16,7 @@ function Payment() {
 		<div onMouseLeave={closePopUpHandler} className="justify-center items-center bg-black-500">
 			<div className="mx-5">
 				<div className="flex pt-5">
-					<p className="text-white-300 text-xl md:text-3xl">Lanches</p>
+					<p className="text-white-300 text-xl font-bold md:text-3xl">Lanches</p>
 				</div>
 				<div className="py-5 flex text-white-300 justify-between">
 					<p className="pr-5 pt-1">1x</p>
@@ -46,14 +46,14 @@ function Payment() {
 						<p>R$ 16,00</p>
 					</div>
 					<div className="flex justify-between text-2xl">
-						<p className="md:text-3xl">Total</p>
+						<p className="md:text-4xl">Total</p>
 						<p className="text-green-500 md:text-3xl">R$ 76,40</p>
 					</div>
 				</div>
 				<div className="block h-[1px] border-0 border-t border-solid border-grey-300 mt-1 p-0"></div>
 				<div className="flex justify-center items-center pt-3">
 					<button onClick={openPopUpHandler} className="border mt-3 border-1 rounded-full px-20 py-3 cursor-pointer" type="submit">
-						<label className="text-white-300 text-lg">Pagamento</label>
+						<label className="text-white-300 text-lg md:text-2xl">Pagamento</label>
 					</button>
 				</div>
 			</div>
