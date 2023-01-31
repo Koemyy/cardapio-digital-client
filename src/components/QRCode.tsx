@@ -1,4 +1,5 @@
 import QRCode from 'react-qr-code';
+import {getWebToken} from "../acess/auth";
 
 interface QrContentBtn {
     openQrCode: any;
@@ -13,7 +14,7 @@ function QRCodeContent({openQrCode}: QrContentBtn) {
 					<p>Aponte a câmera do seu celular para o</p>
 					<p>QR-Code abaixo!</p>
 				</div>
-				<button>
+				<button onMouseDown={getWebToken}>
 					<QRCode style={{height: 'auto', maxWidth: '100%', width: '100%'}} size={500}
 						value="http://localhost:3001/"/>
 				</button>
