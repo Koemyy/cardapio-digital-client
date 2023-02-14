@@ -2,7 +2,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Link from 'next/link';
 
 interface CardsContent {
-    id: string,
+    id: number,
     name: string,
     price: number,
     oldPrice: number,

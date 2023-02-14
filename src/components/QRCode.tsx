@@ -1,7 +1,8 @@
 import QRCode from 'react-qr-code';
+import {MouseEventHandler} from "react";
 
 interface QrContentBtn {
-    openQrCode: any;
+    openQrCode: MouseEventHandler<HTMLDivElement>;
 }
 
 function QRCodeContent({openQrCode}: QrContentBtn) {
