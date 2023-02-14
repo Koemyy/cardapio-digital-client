@@ -1,36 +1,35 @@
 import Section from './Section';
 import ProductPage from './ProductPage';
+import {Produtos} from '../pages';
+import {ProductsContent} from "./ProductPage";
 
-function Cardapio(props:any[]|any) {
-	return (
-		<div>
-			{
-					props.map((teste:any) => {
-						return (
-							<Section key={teste.ses_id} title={teste.ses_nome} section={teste.produtos}/>
-						);
-					})
-				}
-		</div>
-	);
+function Cardapio({ses_id, ses_nome, produtos}: Produtos) {
+    return (
+        <div>
+            <Section key={ses_id} title={ses_nome} section={produtos}/>
+        </div>
+    );
 }
 
-export function ProductPageContent(props: any) {
+export function ProductPageContent(props: ProductsContent) {
 
-	return (
-		<div>
-		 <ProductPage key={props.pro_id} name={props.pro_nome}
-			price={props.pro_preco - props.pro_preco * props.prm_desconto / 100}
-			oldPrice={props.pro_preco}
-			description={props.pro_descricao}
-			img={props.pro_imagem}
-			serve={props.pro_serve}
-			tag={props.tags}
-			ingredient={props.ingredientes}
-		/>
+    return (
+        <div>
+            <ProductPage key={props.pro_id}
+                         prm_desconto={props.prm_desconto}
+                         pro_precoNovo={props.pro_preco - props.pro_preco * props.prm_desconto / 100}
+                         pro_preco={props.pro_preco}
+                         pro_imagem={props.pro_imagem}
+                         pro_descricao={props.pro_descricao}
+                         pro_nome={props.pro_nome}
+                         pro_id={props.pro_id}
+                         pro_ingredient={props.pro_ingredient}
+                         pro_serve={props.pro_serve}
+                         pro_tag={props.pro_tag}
+            />
 
-		</div>
-	);
+        </div>
+    );
 }
 
 export default Cardapio;
