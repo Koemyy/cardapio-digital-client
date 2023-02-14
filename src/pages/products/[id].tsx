@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: Path) {
-	
+
 	const produto= await fetch(`http://localhost:3000/produto/${context.params.id}`)
         .then(response => response.json())
         .then((data) => {
@@ -52,7 +52,7 @@ export async function getStaticProps(context: Path) {
 function Produtos(props: any) {
 	return (
 		<div>
-			<ProductPageContent 
+			<ProductPageContent
 				pro_id={props.pro_id}
 				pro_nome={props.pro_nome}
 				pro_preco={props.pro_preco}
@@ -60,8 +60,9 @@ function Produtos(props: any) {
 				pro_descricao={props.pro_descricao}
 				pro_serve={props.pro_serve}
 				pro_imagem={props.pro_imagem}
-				tags={props.tags}
-				ingredientes={props.ingredientes}
+				pro_precoNovo={props.pro_precoNovo}
+				pro_tag={props.pro_tag}
+				pro_ingredient={props.pro_ingredient}
 			/>
 		</div>
 	);
