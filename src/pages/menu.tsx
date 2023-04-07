@@ -30,18 +30,18 @@ interface Tag {
 }
 
 export async function getStaticProps() {
-	
+
 	const cardapio= await fetch('http://localhost:3000/cardapio/')
         .then(response => response.json())
         .then((data) => {
             return data
     });
 
-	const promocao = await fetch('http://localhost:3000/cardapio/promocoes')
-        .then(response => response.json())
-        .then((data) => {
-            return data
-    });
+	 const promocao = await fetch('http://localhost:3000/cardapio/promocoes')
+         .then(response => response.json())
+         .then((data) => {
+             return data
+     });
 
 	return{
 		props:{
@@ -52,6 +52,7 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = (props:any) => {
+
 	return (
 		<div className="bg-black-500">
 			<Head>
@@ -68,27 +69,30 @@ const Home: NextPage = (props:any) => {
 								<Bars key={teste.ses_id} name={teste.ses_nome} cor={teste.ses_cor}/>
 							);
 						})
-					}	
+					}
 				</div>
-				
+
 				<div className="flex justify-center align-middle items-center">
 				{
-					
+
 					<Cards key={props.promocao.prm_id} title={props.promocao.prm_nome} sectionCards={props.promocao.produtos}/>
-					
+
 				}
-				
+
 				</div>
-				
+
 				{
+					
 					props.cardapio.map((teste:any) => {
 						return (
 							<Section key={teste.ses_id} title={teste.ses_nome} section={teste.produtos}/>
+						
 						);
 					})
 				}
-				<CartIcon/>	
+				<CartIcon/>
 			</main>
+			
 		</div>
 	);
 };
