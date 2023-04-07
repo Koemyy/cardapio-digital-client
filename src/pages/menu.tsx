@@ -30,18 +30,18 @@ interface Tag {
 }
 
 export async function getStaticProps() {
-
-	const cardapio= await fetch('http://localhost:3000/cardapio/')
+	
+	const cardapio= await fetch('https://cardapio-digital-api.onrender.com/cardapio/')
         .then(response => response.json())
         .then((data) => {
             return data
     });
 
-	 const promocao = await fetch('http://localhost:3000/cardapio/promocoes')
-         .then(response => response.json())
-         .then((data) => {
-             return data
-     });
+	const promocao = await fetch('https://cardapio-digital-api.onrender.com/cardapio/promocoes')
+        .then(response => response.json())
+        .then((data) => {
+            return data
+    });
 
 	return{
 		props:{

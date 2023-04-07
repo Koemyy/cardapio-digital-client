@@ -8,7 +8,7 @@ interface token {
 
 export async function buscarToken (cli_nome : string | null) : Promise<string | any> { 
 
-    await fetch('http://localhost:3000/cliente', {
+    await fetch('https://cardapio-digital-api.onrender.com/cliente', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ export async function buscarToken (cli_nome : string | null) : Promise<string | 
 
 export async function buscarSessao(cli_token : string | null) : Promise<string | null> { 
 
-    const url = 'http://localhost:3000/cliente/autenticar/?cli_token=' + cli_token;
+    const url = 'https://cardapio-digital-api.onrender.com/cliente/autenticar/?cli_token=' + cli_token;
 
     const webToken : string | null = await fetch(url)
         .then((result)=>{
