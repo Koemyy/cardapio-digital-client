@@ -40,7 +40,7 @@ function ProductPage({name, price, oldPrice, description, img, ingredient, tag, 
 
 	return (
 		<section className="lg:flex lg:items-center lg:justify-center bg-black-500">
-			<Link href="../">
+			<Link href="../menu">
 				<div className="top-0 lg:left-[23%] lg:text-orange-400 absolute py-5 px-4 text-orange-400"><ArrowCircleLeft size={40}/></div>
 			</Link>
 			<div>

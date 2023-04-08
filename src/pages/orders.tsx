@@ -34,7 +34,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 		<div className="justify-center items-center bg-black-500">
 			<div className="mx-5">
 				<div className="flex py-5">
-					<Link href={`../`}>
+					<Link href={`../menu`}>
 						<div className="top-0 text-orange-400 md:pt-1"><ArrowCircleLeft size={40}/></div>
 					</Link>
 					<h1 className="text-orange-400 text-3xl font-bold pl-3 md:text-5xl">Rockland Bar</h1>
