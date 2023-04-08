@@ -65,7 +65,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 						<p className="pt-1 md:text-xl">R$ 5,50</p>
 					</div>
 					<div className="flex justify-center items-center pt-3">
-						<Link href="../">
+						<Link href="../menu">
 							<button
 								className="border border-1 rounded-full px-5 py-3 cursor-pointer"
 								type="submit">

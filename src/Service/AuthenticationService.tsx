@@ -36,7 +36,7 @@ export async function buscarSessao(cli_token : string | null) : Promise<string |
 
     const url = 'https://cardapio-digital-api.onrender.com/cliente/autenticar/?cli_token=' + cli_token;
 
-    const webToken : string | null = await fetch(url)
+        const webToken : string | null = await fetch(url)
         .then((result)=>{
             const resultJson = result.json();
             if(!result.statusText) { 
@@ -47,9 +47,14 @@ export async function buscarSessao(cli_token : string | null) : Promise<string |
         }).then(({webToken }) =>{
             tokenMethods.save("webToken",webToken);
             return webToken;
-        })
 
-    return webToken;
+        }).catch((error)=>{
+            throw new Error (error.message);
+        })
+        
+        return webToken;
+
+   
 }
 
 
