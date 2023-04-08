@@ -2,7 +2,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import {ShoppingBag} from 'phosphor-react';
 import Link from 'next/link';
 import {ArrowCircleLeft} from 'phosphor-react';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
+import { CartContext } from '../Service/contextService';
 
 interface ProductsContent {
     name: string,
@@ -27,6 +28,7 @@ interface Tags {
 function ProductPage({name, price, oldPrice, description, img, ingredient, tag, serve}: ProductsContent) {
 	const [counter, setCounter] = useState(1);
 
+	const {addItem} = useContext(CartContext);
 	//increase counter
 	const increase = () => {
 		setCounter(count => count + 1);
@@ -95,8 +97,8 @@ function ProductPage({name, price, oldPrice, description, img, ingredient, tag, 
 								</div>
 							</div>
 							<Link href="../orders">
-								<button
-									className="flex bottom-0 right-0 absolute mr-3 text-center cursor-pointer bg-orange-500 md:py-3 md:px-5 py-2 px-3 rounded-3xl align-middle">
+								<button className="flex bottom-0 right-0 absolute mr-3 text-center cursor-pointer bg-orange-500 md:py-3 md:px-5 py-2 px-3 rounded-3xl align-middle"
+								onClick={()=>{addItem(name, price)}}>
 									<label className="flex justify-center items-center text-white-300 text-sm md:text-3xl"><ShoppingBag size="30"
 										weight="fill"/>Carrinho</label>
 								</button>

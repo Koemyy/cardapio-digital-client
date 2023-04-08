@@ -1,7 +1,8 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import Payment from '../components/Payment';
 import Link from 'next/link';
 import {ArrowCircleLeft} from 'phosphor-react';
+import { CartContext } from '../Service/contextService';
 
 interface CardsContent {
     id: string,
@@ -15,6 +16,9 @@ interface CardsContent {
 
 function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 	const [isPayment, setPaymentIsOpen] = useState(false);
+	const { getItemsArray} = useContext(CartContext)
+
+	const itens = getItemsArray()
 
 	function openPaymentHandler() {
 		setPaymentIsOpen(true);
@@ -48,21 +52,18 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 					</div>
 				</div>
 				<div id="hidde">
-					<div className="flex pt-5">
-						<p className="text-white-300 text-xl font-bold md:text-3xl">Lanches</p>
-					</div>
-					<div className="py-5 flex text-white-300 justify-between">
-						<p className="pr-5 pt-1 md:text-xl">1x</p>
-						<p className="font-semibold text-lg w-56 md:text-2xl">X-Bacon</p>
-						<p className="pt-1 md:text-xl">R$ 24,90</p>
-					</div>
-					<div className="flex pt-5">
-						<p className="text-white-300 text-xl font-bold md:text-3xl">Bebidas</p>
-					</div>
-					<div className="py-5 flex text-white-300 justify-between">
-						<p className="pr-5 pt-1 md:text-xl">1x</p>
-						<p className="font-semibold text-lg w-56 md:text-2xl">Coca-lata</p>
-						<p className="pt-1 md:text-xl">R$ 5,50</p>
+					
+					<div className="text-white-300 md:text-xl">
+						{
+							itens.map((item, key)=>{
+								return(
+									<div key={key} className='ml-10'>
+										nome: {item.name} preço: {item.price}
+									</div>
+								)
+							})
+						}
+
 					</div>
 					<div className="flex justify-center items-center pt-3">
 						<Link href="../menu">

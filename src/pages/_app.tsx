@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import tokenMethods from '../Service/TokenService';
 
 import '../styles/global.css';
+import CartProvider from '../Service/contextService';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -18,7 +19,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     }, [])
 
 	if(isLoading || Component.name == "semToken" || Component.name == "aguarde" || Component.name == "errorFetch"){
-		return <Component {...pageProps} />;
+		return (
+			<CartProvider>
+				<Component {...pageProps} />
+			</CartProvider>	
+		);
 	}
 }
 
