@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		}
     }, [])
 
-	if(isLoading || Component.name == "semToken" || Component.name == "aguarde"){
+	if(isLoading || Component.name == "semToken" || Component.name == "aguarde" || Component.name == "errorFetch"){
 		return <Component {...pageProps} />;
 	}
 }
