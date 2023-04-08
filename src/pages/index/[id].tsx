@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 export default function index() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(true);
+    const [nameLoading, setNameLoading] = useState('/aguarde');
+
+
     const param: string | undefined = router.query.id?.toString();
 
     const array: string[] | undefined = param?.split("~");
@@ -15,17 +18,18 @@ export default function index() {
 
     useEffect(()=>{
         if(isLoading){
-            Router.push('/aguarde');
+            Router.push(nameLoading);
         }
-        try{
-            buscarSessao(token);
+
+        buscarSessao(token)
+        .then(()=>{
             Router.push('/menu');
-            setTimeout(() => {
-                setIsLoading(false) 
-            }, 20000);
-        }catch(error : any){
-            throw new Error(error.message)
-        }   
+            setTimeout(() => setIsLoading(false),20000);
+        })
+        .catch((err)=>{
+            setNameLoading('/errorFetch')
+        })
+        
     })
 
 }
