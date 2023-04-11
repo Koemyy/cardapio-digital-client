@@ -6,7 +6,7 @@ interface token {
     message : string 
 }
 
-export async function buscarToken (cli_nome : string | null) : Promise<string | any> { 
+export async function BuscarToken (cli_nome : string | null) : Promise<string | any> { 
 
     await fetch('https://cardapio-digital-api.onrender.com/cliente', {
         method: 'POST',
@@ -32,7 +32,7 @@ export async function buscarToken (cli_nome : string | null) : Promise<string | 
 }
 
 
-export async function buscarSessao(cli_token : string | null) : Promise<string | null> { 
+export async function BuscarSessao(cli_token : string | null) : Promise<string | null> { 
 
     const url = 'https://cardapio-digital-api.onrender.com/cliente/autenticar/?cli_token=' + cli_token;
 
@@ -59,12 +59,12 @@ export async function buscarSessao(cli_token : string | null) : Promise<string |
 
 
 
-export function useSession(){
+export function UseSession(){
 	const [loanding, setLoanding] = useState<boolean>(true);
 	const [dados, setDados] = useState<string | null>("");
 	const [error, setError] = useState<boolean>(false);
   
-	buscarSessao(tokenMethods.get("token_key"))
+	BuscarSessao(tokenMethods.get("token_key"))
 	.then((response)=>{
 		setDados(response);
 
@@ -84,8 +84,8 @@ export function useSession(){
 }
 
 export const obetemSession = async (mesa :string)=>{
-    await buscarToken(mesa)
+    await BuscarToken(mesa)
     .then(()=>{
-        buscarSessao(tokenMethods.get("token_key"))
+        BuscarSessao(tokenMethods.get("token_key"))
     });
 }

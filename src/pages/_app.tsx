@@ -1,24 +1,35 @@
 import type { AppProps } from 'next/app';
-import Router  from 'next/router';
 import { useEffect, useState } from 'react';
 import tokenMethods from '../Service/TokenService';
 
 import '../styles/global.css';
+import SemToken from './semToken';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState('');
 
 	useEffect(()=>{
-        if(tokenMethods.get("webToken") == null && Component.name != "index"){
-            Router.push('/semToken');
-        }else{
-			setIsLoading(true) 
-		}
-    }, [])
+        if(tokenMethods.get("webToken") == null && Component.name == 'Home'){
+            setIsLoading('NaoAutorizado')
 
-	if(isLoading || Component.name == "semToken" || Component.name == "aguarde" || Component.name == "errorFetch"){
-		return <Component {...pageProps} />;
+		}else if(tokenMethods.get("webToken") == null){
+			setIsLoading('NaoAutorizado')
+			
+		}else{
+			setIsLoading('Autorizado')
+		}
+		
+    })
+
+	if(isLoading == 'Autorizado' || Component.name == "Aguarde" || Component.name == "ErrorFetch" || Component.name == 'Index'){
+		return (
+			<Component {...pageProps} />
+		);
+	}else if (isLoading != 'Autorizado'){
+		return (
+			<SemToken/>
+		);
 	}
 }
 

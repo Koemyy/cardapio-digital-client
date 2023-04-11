@@ -1,6 +1,6 @@
 
 const ACESS_TOKEN = "ACESS_TOKEN";
-export const tokenMethods = { 
+export const TokenMethods = { 
     save(chave: string ,WebToken : string){
         if(WebToken!=null || WebToken != undefined){
             localStorage.setItem(chave, WebToken);
@@ -17,4 +17,4 @@ export const tokenMethods = {
 
 };
 
-export default tokenMethods;
+export default TokenMethods;
