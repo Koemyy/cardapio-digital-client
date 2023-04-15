@@ -1,12 +1,12 @@
 import { useState } from "react";
-import tokenMethods from "./TokenService";
+import  { Methods } from "./CookieService";
 
 interface token {
     cli_token :string
     message : string 
 }
 
-export async function buscarToken (cli_nome : string | null) : Promise<string | any> { 
+export async function BuscarToken (cli_nome : string | null) : Promise<string | any> { 
 
     await fetch('https://cardapio-digital-api.onrender.com/cliente', {
         method: 'POST',
@@ -25,14 +25,14 @@ export async function buscarToken (cli_nome : string | null) : Promise<string | 
         if(cli_token == undefined || cli_token == null){
             throw new Error (message);
         }
-       tokenMethods.save("token_key", cli_token);
+       Methods.save("token_key", cli_token);
        return cli_token.toString();
     });
 
 }
 
 
-export async function buscarSessao(cli_token : string | null) : Promise<string | null> { 
+export async function BuscarSessao(cli_token : string | null) : Promise<string | null> { 
 
     const url = 'https://cardapio-digital-api.onrender.com/cliente/autenticar/?cli_token=' + cli_token;
 
@@ -45,7 +45,7 @@ export async function buscarSessao(cli_token : string | null) : Promise<string |
             return resultJson !== null ? resultJson : "";
 
         }).then(({webToken }) =>{
-            tokenMethods.save("webToken",webToken);
+            Methods.save("webToken",webToken);
             return webToken;
 
         }).catch((error)=>{
@@ -59,12 +59,12 @@ export async function buscarSessao(cli_token : string | null) : Promise<string |
 
 
 
-export function useSession(){
+export function UseSession(){
 	const [loanding, setLoanding] = useState<boolean>(true);
 	const [dados, setDados] = useState<string | null>("");
 	const [error, setError] = useState<boolean>(false);
   
-	buscarSessao(tokenMethods.get("token_key"))
+	BuscarSessao(Methods.get("token_key"))
 	.then((response)=>{
 		setDados(response);
 
@@ -84,8 +84,8 @@ export function useSession(){
 }
 
 export const obetemSession = async (mesa :string)=>{
-    await buscarToken(mesa)
+    await BuscarToken(mesa)
     .then(()=>{
-        buscarSessao(tokenMethods.get("token_key"))
+        BuscarSessao(Methods.get("token_key"))
     });
 }
