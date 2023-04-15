@@ -16,7 +16,7 @@ interface CardsContent {
 
 function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 	const [isPayment, setPaymentIsOpen] = useState(false);
-	const { getItemsArray} = useContext(CartContext)
+	const { getItemsArray, removeItem, getTotal} = useContext(CartContext)
 
 	const itens = getItemsArray()
 
@@ -57,10 +57,23 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 						{
 							itens.map((item, key)=>{
 								return(
-									<div key={key} className='ml-10'>
-										nome: {item.name} preço: {item.price}
-									</div>
+									<ul>
+										<li key={key} className="flex items-center mb-2">
+										<div className="w-1/2">{item.name}</div>
+										<div className="w-1/4 text-right">
+											 R${item.price.toFixed(2)}
+										</div>
+										<div className="w-1/4 text-right">
+											<button
+											className="bg-red-500 text-white p-1 rounded-md"
+											onClick={() => removeItem(item.id)}>
+											Remover
+											</button>
+										</div>
+										</li>
+									</ul>
 								)
+								
 							})
 						}
 
@@ -78,12 +91,12 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 					</div>
 					<div className="pt-3 text-white-300">
 						<div className="flex justify-between pt-3 pb-2 text-sm">
-							<p>Subtotal</p>
-							<p>R$ 30,40</p>
+							<p>Subtotal</p>	
+							<p>{getTotal().toFixed(2)}</p>	
 						</div>
 						<div className="flex justify-between text-2xl">
 							<p className="md:text-4xl">Total</p>
-							<p className="text-green-500">R$ 30,40</p>
+							<p className="text-green-500">{getTotal().toFixed(2)}</p>
 						</div>
 					</div>
 					<div className="block h-[1px] border-0 border-t border-solid border-grey-300 mt-1 p-0"></div>

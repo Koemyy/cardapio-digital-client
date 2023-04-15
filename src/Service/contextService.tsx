@@ -1,7 +1,9 @@
-import { Children, createContext, useState } from "react";
+import { Children, createContext, useEffect, useState } from "react";
+import Methods from "./CookieService";
+import { parseCookies } from "nookies";
 
 interface Item {
-  id: number;
+  id: string;
   name: string;
   price: number;
 }
@@ -10,9 +12,9 @@ interface Item {
 interface CartContextData {
   items: Item[];
   addItem: (name: string, price: number) => void;
-  removeItem: (id: number) => void;
+  removeItem: (id: string) => void;
   getTotal: () => number;
-  getItemsArray: () => { id: number, name: string, price: number }[];
+  getItemsArray: () => { id: string, name: string, price: number }[];
 }
 
 //cria meu contexto com especificao default 
@@ -26,13 +28,29 @@ export const CartContext = createContext<CartContextData>({
 
 //funcao que implementa minha especificação e cria meu provider
 export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const [items, setItems] = useState<Item[]>([{id: 1, name : 'lanche 1', price : 23.50}]);
+  const [items, setItems] = useState<Item[]>([]);
 
   const addItem = (name: string, price: number) => {
-    setItems([...items, {id: 2, name: name, price: price}]);
+    setItems([...items, {id: name, name: name, price: price}]);
+    Methods.saveAll('cart',JSON.stringify(items))
   };
 
-  const removeItem = (id: number) => {
+  //busca a compra em cookie para atualizar o carrinho
+  useEffect(() => {
+    const cartCookie = parseCookies(null)['cart'];
+    if (cartCookie) {
+      setItems(JSON.parse(cartCookie));
+    }
+  }, []);
+
+  //salva compra em cookie
+  useEffect(() => {
+    const json = JSON.stringify(items)
+    console.log(json)
+    Methods.saveAll('cart', json)
+  }, [items]);
+
+  const removeItem = (id: string) => {
     setItems(items.filter(item => item.id !== id));
   };
 

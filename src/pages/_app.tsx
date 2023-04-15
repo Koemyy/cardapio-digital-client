@@ -4,6 +4,7 @@ import Methods from '../Service/CookieService';
 
 import '../styles/global.css';
 import SemToken from './semToken';
+import CartProvider from '../Service/contextService';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -24,7 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 	if(isLoading == 'Autorizado' || Component.name == "Aguarde" || Component.name == "ErrorFetch" || Component.name == 'Index'){
 		return (
-			<Component {...pageProps} />
+			<CartProvider>
+				<Component {...pageProps} />
+			</CartProvider>	
 		);
 	}else if (isLoading != 'Autorizado'){
 		return (

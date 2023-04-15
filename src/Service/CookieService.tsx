@@ -8,7 +8,7 @@ const ONE_DAY = ONE_HOUR * 24;
 const ONE_YEAR = ONE_DAY * 365;
 
 export const Methods = { 
-    saveAll(chave: string ,valor : string){
+    saveAll(chave: string ,valor : any){
         if(valor!=null || valor != undefined){
 
             setCookie(null, chave, valor, {

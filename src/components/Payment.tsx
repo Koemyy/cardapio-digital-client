@@ -1,7 +1,10 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import PopUp from '../components/PopUp';
+import { CartContext } from '../Service/contextService';
 
 function Payment() {
+	const { getItemsArray, getTotal} = useContext(CartContext)
+	const itens = getItemsArray()
 	const [showPopUp, setPopUpIsOpen] = useState(false);
 
 	function openPopUpHandler() {
@@ -15,31 +18,26 @@ function Payment() {
 	return (
 		<div onMouseLeave={closePopUpHandler} className="justify-center items-center bg-black-500">
 			<div className="mx-5">
-				<div className="flex pt-5">
-					<p className="text-white-300 text-xl font-bold md:text-3xl">Lanches</p>
-				</div>
-				<div className="py-5 flex text-white-300 justify-between">
-					<p className="pr-5 pt-1">1x</p>
-					<p className="font-semibold text-lg w-56 md:text-2xl w-56">X-Bacon</p>
-					<p className="pt-1 md:text-xl">R$ 24,90</p>
-				</div>
-				<div className="py-5 flex text-white-300 justify-between">
-					<p className="pr-5 pt-1">1x</p>
-					<p className="font-semibold text-lg w-56 md:text-2xl w-56">X-tudo</p>
-					<p className="pt-1 md:text-xl">R$ 30,00</p>
-				</div>
-				<div className="flex pt-5">
-					<p className="text-white-300 text-xl font-bold md:text-3xl">Bebidas</p>
-				</div>
-				<div className="py-5 flex text-white-300 justify-between">
-					<p className="pr-5 pt-1 md:text-xl">1x</p>
-					<p className="font-semibold text-lg w-56 md:text-2xl">Coca-lata</p>
-					<p className="pt-1 md:text-xl">R$ 5,50</p>
-				</div>
+			<div className="text-white-300 md:text-xl">
+						{
+							itens.map((item, key)=>{
+								return(
+									<ul>
+										<li key={key} className="flex items-center mb-2">
+										<div className="w-1/2">{item.name}</div>
+										<div className="w-1/4 text-right">
+											 R${item.price.toFixed(2)}
+										</div>
+										</li>
+									</ul>
+								)
+							})
+						}
+					</div>
 				<div className="pt-3 text-white-300">
 					<div className="flex justify-between pt-3 pb-2 text-sm">
 						<p>Subtotal</p>
-						<p>R$ 30,40</p>
+						<p>{getTotal().toFixed(2)}</p>
 					</div>
 					<div className="flex justify-between pb-2 text-sm">
 						<p>Taxa de serviço</p>
@@ -47,7 +45,7 @@ function Payment() {
 					</div>
 					<div className="flex justify-between text-2xl">
 						<p className="md:text-4xl">Total</p>
-						<p className="text-green-500 md:text-3xl">R$ 76,40</p>
+						<p className="text-green-500 md:text-3xl">{getTotal().toFixed(2)}</p>
 					</div>
 				</div>
 				<div className="block h-[1px] border-0 border-t border-solid border-grey-300 mt-1 p-0"></div>
