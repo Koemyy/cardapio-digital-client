@@ -64,6 +64,9 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
 											 R${item.price.toFixed(2)}
 										</div>
 										<div className="w-1/4 text-right">
+											{item.contador}
+										</div>
+										<div className="w-1/4 text-right">
 											<button
 											className="bg-red-500 text-white p-1 rounded-md"
 											onClick={() => removeItem(item.id)}>

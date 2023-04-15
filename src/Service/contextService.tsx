@@ -1,4 +1,4 @@
-import { Children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import Methods from "./CookieService";
 import { parseCookies } from "nookies";
 
@@ -8,13 +8,17 @@ interface Item {
   price: number;
 }
 
+interface itemCarrinho extends Item{
+  contador : number;
+}
+
 //interface que especifica o tipo do meu context 
 interface CartContextData {
   items: Item[];
   addItem: (name: string, price: number) => void;
   removeItem: (id: string) => void;
   getTotal: () => number;
-  getItemsArray: () => { id: string, name: string, price: number }[];
+  getItemsArray: () => { id: string, name: string, price: number , contador : number}[];
 }
 
 //cria meu contexto com especificao default 
@@ -28,10 +32,24 @@ export const CartContext = createContext<CartContextData>({
 
 //funcao que implementa minha especificação e cria meu provider
 export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<itemCarrinho[]>([]);
 
   const addItem = (name: string, price: number) => {
-    setItems([...items, {id: name, name: name, price: price}]);
+    const item :Item = {id: name, name: name, price: price}
+
+    const indexItem = items.findIndex((i)=>i.id === item.id) 
+
+    if(indexItem >= 0 ){
+      const itensNovos = [...items]
+      itensNovos[indexItem].contador++;
+
+      setItems(itensNovos);
+    }else{
+
+      setItems([...items, {...item, contador : 1}]);
+    }
+
+    
     Methods.saveAll('cart',JSON.stringify(items))
   };
 
@@ -46,12 +64,23 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }
   //salva compra em cookie
   useEffect(() => {
     const json = JSON.stringify(items)
-    console.log(json)
     Methods.saveAll('cart', json)
   }, [items]);
 
   const removeItem = (id: string) => {
-    setItems(items.filter(item => item.id !== id));
+    const item = items.find((item) => item.id === id);
+
+    const indexItem = items.findIndex((i)=> i.id === item?.id);
+
+    if (indexItem >= 0) {
+      const newCartItems = [...items];
+      if (newCartItems[indexItem].contador > 1) {
+        newCartItems[indexItem].contador--;
+      } else {
+        newCartItems.splice(indexItem, 1);
+      }
+      setItems(newCartItems);
+    }
   };
 
   const getTotal = () => {
@@ -63,6 +92,7 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }
       id: item.id,
       name: item.name,
       price: item.price,
+      contador : item.contador
     }));
   };
 
