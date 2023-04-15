@@ -1,5 +1,5 @@
 import { useState } from "react";
-import tokenMethods from "./TokenService";
+import  { Methods } from "./CookieService";
 
 interface token {
     cli_token :string
@@ -25,7 +25,7 @@ export async function BuscarToken (cli_nome : string | null) : Promise<string | 
         if(cli_token == undefined || cli_token == null){
             throw new Error (message);
         }
-       tokenMethods.save("token_key", cli_token);
+       Methods.save("token_key", cli_token);
        return cli_token.toString();
     });
 
@@ -45,7 +45,7 @@ export async function BuscarSessao(cli_token : string | null) : Promise<string |
             return resultJson !== null ? resultJson : "";
 
         }).then(({webToken }) =>{
-            tokenMethods.save("webToken",webToken);
+            Methods.save("webToken",webToken);
             return webToken;
 
         }).catch((error)=>{
@@ -64,7 +64,7 @@ export function UseSession(){
 	const [dados, setDados] = useState<string | null>("");
 	const [error, setError] = useState<boolean>(false);
   
-	BuscarSessao(tokenMethods.get("token_key"))
+	BuscarSessao(Methods.get("token_key"))
 	.then((response)=>{
 		setDados(response);
 
@@ -86,6 +86,6 @@ export function UseSession(){
 export const obetemSession = async (mesa :string)=>{
     await BuscarToken(mesa)
     .then(()=>{
-        BuscarSessao(tokenMethods.get("token_key"))
+        BuscarSessao(Methods.get("token_key"))
     });
 }

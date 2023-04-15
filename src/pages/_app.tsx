@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
-import tokenMethods from '../Service/TokenService';
+import Methods from '../Service/CookieService';
 
 import '../styles/global.css';
 import SemToken from './semToken';
@@ -10,10 +10,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const [isLoading, setIsLoading] = useState('');
 
 	useEffect(()=>{
-        if(tokenMethods.get("webToken") == null && Component.name == 'Home'){
+        if(Methods.get("webToken") == null && Component.name == 'Home'){
             setIsLoading('NaoAutorizado')
 
-		}else if(tokenMethods.get("webToken") == null){
+		}else if(Methods.get("webToken") == null){
 			setIsLoading('NaoAutorizado')
 			
 		}else{
