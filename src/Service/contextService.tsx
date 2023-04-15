@@ -42,6 +42,7 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }
     if(indexItem >= 0 ){
       const itensNovos = [...items]
       itensNovos[indexItem].contador++;
+      itensNovos[indexItem].price += itensNovos[indexItem].price;
 
       setItems(itensNovos);
     }else{
@@ -75,7 +76,15 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }
     if (indexItem >= 0) {
       const newCartItems = [...items];
       if (newCartItems[indexItem].contador > 1) {
+
+        const qtdantiga = newCartItems[indexItem].contador;
         newCartItems[indexItem].contador--;
+
+        const qtdAtual = qtdantiga-1;
+        const precoNovo = (newCartItems[indexItem].price / qtdantiga) * qtdAtual;
+
+        newCartItems[indexItem]. price = precoNovo;
+
       } else {
         newCartItems.splice(indexItem, 1);
       }
