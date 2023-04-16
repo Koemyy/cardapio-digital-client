@@ -58,7 +58,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
                         {
                             itens.map((item, key) => {
                                 return (
-                                    <ul>
+                                    <ul key={item.id}>
                                         <li key={key} className="flex items-center mb-2">
                                             <div className="w-1/2">{item.name}</div>
                                             <div className="w-1/4 text-right">
