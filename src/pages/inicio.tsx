@@ -1,27 +1,38 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { BuscarSessao } from "../Service/AuthenticationService";
+import { ParsedUrlQuery } from "querystring";
 
-export default function Index() {
-    const router = useRouter();
-    const [isLoading, setIsLoading] = useState(true);
+type IndexProps = {
+  mesa: string;
+  token: string;
+};
 
-    const query= router.query;
+type Query = {
+  mesa?: string;
+  token?: string;
+};
 
-    const mesa = query['mesa'] as string;
-    const token = query['token'] as string;
+export default function Index({ mesa, token }: IndexProps) {
+  const router = useRouter();
 
-    useEffect(()=>{
-        if(isLoading){
-            router.push('/aguarde');
-        }
-        BuscarSessao(token);
-        router.push('/menu');
-        setTimeout(() => {
-            setIsLoading(false) 
-        }, 2000);
-        
-    })
+  useEffect(() => {
+    BuscarSessao(token)
+      .then(() => router.push('/menu'))
+      .catch(() => router.push('/semToken'))
+  }, []);
 
-    return null;
+  return <div>Aguardando verificação...</div>;
+}
+
+export async function getServerSideProps({ query }: { query: ParsedUrlQuery }): Promise<{ props: IndexProps }> {
+  const mesa = query.mesa as string;
+  const token = query.token as string;
+
+  return {
+    props: {
+      mesa,
+      token,
+    },
+  };
 }

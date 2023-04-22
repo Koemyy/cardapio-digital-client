@@ -17,29 +17,32 @@ export const Methods = {
               });
         } 
     },
-    save(chave: string ,valor : string){
-        if(valor!=null || valor != undefined){
 
-            setCookie(null, chave, valor, {
-                maxAge: ONE_DAY,
-                path: '/',
-              });
-        } 
-    },
-    
-    delete(chave: string){
+    delete(chave: string) {
 
         destroyCookie(null, chave, {
             path: '/',
           });
     },
 
-    get(chave : string) : string | null{
-        const resp :string | null= nookies.get(null)[chave];
-        return resp;
-    }
+   
 
 };
+
+export function get(chave: string): string | null {
+    const resp: string | null = nookies.get()[chave];
+    return resp;
+}
+
+export function save(chave: string, valor: string) {
+    if (valor != null || valor != undefined) {
+
+        setCookie(null, chave, valor, {
+            maxAge: ONE_DAY,
+            path: '/',
+        });
+    }
+}
 
 
 export default Methods;
