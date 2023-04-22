@@ -11,28 +11,29 @@ interface ProductsContent {
     oldPrice: number,
     description: string,
     img: string,
-    tag?: Tags[]| null,
+    tag?: Tags[] | null,
     ingredient?: Ingredientes[] | null,
     serve?: string | null,
 }
 
 interface Ingredientes {
-	ing_nome: string
+    ing_nome: string
 }
 
 interface Tags {
-	tag_nome: string,
-	tag_cor: string
+    tag_nome: string,
+    tag_cor: string
 }
 
 function ProductPage({name, price, oldPrice, description, img, ingredient, tag, serve}: ProductsContent) {
     const [counter, setCounter] = useState<number>(1);
     let [precoTotal, setPrecoTotal] = useState(price);
 
-	//increase counter
-	const increase = () => {
-		setCounter(count => count + 1);
-	};
+    const {addItem} = useContext(CartContext);
+    //increase counter
+    const increase = () => {
+        setCounter(count => count + 1);
+    };
 
     const decrease = () => {
         if (counter > 1) {
@@ -78,30 +79,29 @@ function ProductPage({name, price, oldPrice, description, img, ingredient, tag, 
                                 </div>
                                 <p className="mb-5 text-white-300 md:text-2xl">{description}</p>
 
-								<p className="text-white-300 md:text-2xl font-semibold"> Ingredientes: </p>
-								<div className="text-white-300 md:text-xl">
-									{ingredient?.map((conteudo:any) =>
-									{
-										return(
-											<p key={conteudo.ing_id} className='ml-10'>{conteudo.ing_nome}</p>
-										)
-									}
-									)}
-								</div>
+                                <p className="text-white-300 md:text-2xl font-semibold"> Ingredientes: </p>
+                                <div className="text-white-300 md:text-xl">
+                                    {ingredient?.map((conteudo: any) => {
+                                            return (
+                                                <p key={conteudo.ing_id} className='ml-10'>{conteudo.ing_nome}</p>
+                                            )
+                                        }
+                                    )}
+                                </div>
 
-								<div className="flex gap-2 pt-3">
-									{
-										tag?.map((conteudo:any) =>
-										{
-											return (
-												<p key={conteudo.tag_id} style= {{backgroundColor: conteudo.tag_cor}} className="flex rounded-full md:text-xl px-5 my-3 text-black font-bold">
-														{conteudo.tag_nome}
-												</p>
-											)
-										}
-										)
-									}
-								</div>
+                                <div className="flex gap-2 pt-3">
+                                    {
+                                        tag?.map((conteudo: any) => {
+                                                return (
+                                                    <p key={conteudo.tag_id} style={{backgroundColor: conteudo.tag_cor}}
+                                                       className="flex rounded-full md:text-xl px-5 my-3 text-black font-bold">
+                                                        {conteudo.tag_nome}
+                                                    </p>
+                                                )
+                                            }
+                                        )
+                                    }
+                                </div>
 
 
                                 <div>
