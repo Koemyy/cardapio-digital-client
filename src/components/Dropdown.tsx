@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {ArrowDown} from 'phosphor-react';
 import QrCode from './QRCode';
-import Notify from './notify';
+import Notification from './Notification';
 
 function Dropdown() {
     const [open, setOpen] = useState(false);
@@ -48,7 +48,7 @@ function Dropdown() {
                 </button>
             </div>
             {sendMessage && (
-                <Notify
+                <Notification
                     closePopUp={sendMessageFalse}
                     description="Gerar QR-Code para a Mesa 01?"
                     buttonText="Gerar"
