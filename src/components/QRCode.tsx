@@ -14,8 +14,10 @@ function QRCodeContent({openQrCode}: QrContentBtn) {
                     <p>QR-Code abaixo!</p>
                 </div>
                 <button>
-                    <QRCode style={{height: 'auto', maxWidth: '100%', width: '100%'}} size={500}
-                            value="https://cardapio-digital-api.onrender.com/"/>
+                    <QRCode style={{height: 'auto', maxWidth: '100%', width: '100%'}}
+                            size={256}
+                            value="https://cardapio-digital-client.vercel.app/"
+                    />
                 </button>
                 <div className="py-3 md:text-xl">
                     <p className="text-black-500">QR-Code referente a</p>
