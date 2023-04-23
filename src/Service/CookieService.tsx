@@ -1,4 +1,4 @@
-import nookies, {destroyCookie, setCookie} from 'nookies';
+import nookies, {destroyCookie, parseCookies, setCookie} from 'nookies';
 
 const ACESS_TOKEN = "ACESS_TOKEN";
 
@@ -29,9 +29,9 @@ export const Methods = {
 
 };
 
-export function get(chave: string): string | null {
-    const resp: string | null = nookies.get()[chave];
-    return resp;
+export function get(): string | null {
+    const cookies = parseCookies(null);
+    return cookies['webToken'];
 }
 
 export function save(chave: string, valor: string) {
