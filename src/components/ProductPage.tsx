@@ -48,7 +48,6 @@ function ProductPage({name, price, oldPrice, description, img, ingredient, tag, 
 
     useEffect(()=>{
         arrumaPreco(counter)
-        console.log('precoTotal: ', precoTotal)
     }, [counter])
 
     return (

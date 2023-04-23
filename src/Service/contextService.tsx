@@ -46,7 +46,7 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({children}) 
         if (indexItem >= 0) {
             const itensNovos = [...items]
             itensNovos[indexItem].contador += contador;
-            itensNovos[indexItem].price += itensNovos[indexItem].price;
+            itensNovos[indexItem].price += price;
 
             setItems(itensNovos);
         } else {

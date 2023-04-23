@@ -3,6 +3,7 @@ import Payment from '../components/Payment';
 import Link from 'next/link';
 import {ArrowCircleLeft} from 'phosphor-react';
 import {CartContext} from '../Service/contextService';
+import { salvarCompra } from '../Service/AuthenticationService';
 
 interface CardsContent {
     id: string,
@@ -21,6 +22,10 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
     const itens = getItemsArray()
 
     function openPaymentHandler() {
+
+        itens.map((item)=>{
+            salvarCompra({ped_id: 1, cli_id:1, pro_id: 3, ped_status:'fim'})
+        })
         setPaymentIsOpen(true);
         // @typescript-eslint/ban-ts-comment
         // @ts-ignore
