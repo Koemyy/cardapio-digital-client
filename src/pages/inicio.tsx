@@ -1,16 +1,12 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { BuscarSessao } from "../Service/AuthenticationService";
+import { BuscarSessao } from "../Service/utilService";
 import { ParsedUrlQuery } from "querystring";
+import { get } from "../Service/CookieService";
 
 type IndexProps = {
   mesa: string;
   token: string;
-};
-
-type Query = {
-  mesa?: string;
-  token?: string;
 };
 
 export default function Index({ mesa, token }: IndexProps) {
@@ -18,7 +14,14 @@ export default function Index({ mesa, token }: IndexProps) {
 
   useEffect(() => {
     BuscarSessao(token)
-      .then(() => router.push('/menu'))
+      .then(() =>{
+        if(get()) {
+          router.push('/menu')
+          return
+        }
+        throw Error('token invalido')
+        
+      })
       .catch(() => router.push('/semToken'))
   }, []);
 
