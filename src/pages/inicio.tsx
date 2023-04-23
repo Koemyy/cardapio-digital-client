@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { BuscarSessao } from "../Service/utilService";
+import { BuscarSessao } from "../Service/AuthenticationService";
 import { ParsedUrlQuery } from "querystring";
 import { get } from "../Service/CookieService";
 
