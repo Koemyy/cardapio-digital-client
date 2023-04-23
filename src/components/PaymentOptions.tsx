@@ -1,9 +1,9 @@
 import {CreditCard} from 'phosphor-react';
 import {Money} from 'phosphor-react';
 import {useState} from 'react';
-import Notify from '../components/notify';
+import Notification from './Notification';
 
-function PopUp() {
+function PaymentOptions() {
     const [sendMessage, setSendMessage] = useState(false);
 
     function sendMessageTrue() {
@@ -32,7 +32,7 @@ function PopUp() {
                 </div>
             </div>
             {sendMessage && (
-                <Notify
+                <Notification
                     closePopUp={sendMessageFalse}
                     description="O atendente foi notificado e está a caminho da sua mesa!"
                     buttonText="Ok"
@@ -42,4 +42,4 @@ function PopUp() {
     );
 }
 
-export default PopUp;
+export default PaymentOptions;
