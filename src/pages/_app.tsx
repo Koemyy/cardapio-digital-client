@@ -17,7 +17,7 @@ function MyApp({Component, pageProps}: AppProps) {
             return;
         }
         
-    },[])
+    },[Component])
     
       return (
         <CartProvider>
