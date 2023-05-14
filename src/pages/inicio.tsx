@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { BuscarSessao } from "../Service/AuthenticationService";
 import { ParsedUrlQuery } from "querystring";
-import { get } from "../Service/CookieService";
+import { get, save} from "../Service/CookieService";
 
 type IndexProps = {
   mesa: string;
@@ -13,9 +13,10 @@ export default function Index({ mesa, token }: IndexProps) {
   const router = useRouter();
 
   useEffect(() => {
+    save('cli_cliente', mesa)
     BuscarSessao(token)
       .then(() =>{
-        if(get()) {
+        if(get('webToken')) {
           router.push('/menu')
           return
         }
