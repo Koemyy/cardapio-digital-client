@@ -15,10 +15,6 @@ interface Content {
     tag: string | null,
 }
 
-/*
-/*
-			*/
-
 function Section({title, section}: any) {
     return (
         <div id={`${title}`}>
