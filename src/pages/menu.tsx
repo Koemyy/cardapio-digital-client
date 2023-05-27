@@ -1,10 +1,12 @@
 import type {NextPage} from 'next';
-import Head from 'next/head';
 import Header from '../components/Header';
 import CartIcon from '../components/CartIcon';
+import Bars from '../components/Bars';
+import React from 'react';
+import {Carousel} from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Section from '../components/Section';
 import Cards from '../components/Cards';
-import Bars from '../components/Bars';
 
 interface Props {
     cardapio: Sessao[]
@@ -54,26 +56,34 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = (props: any) => {
+    const renderCarouselItem = (item: React.ReactNode, options: { isSelected: boolean }) => {
+        return (
+            <div className={`custom-slide ${options.isSelected ? 'active' : ''}`}>
+                {item}
+            </div>
+        );
+    };
 
     return (
         <div className="bg-black-500">
-            <Head>
-                <title>Cardápio Digital</title>
-            </Head>
             <header>
                 <Header title="RockLand Bar" subtitle="Desde 1958"/>
             </header>
             <main>
-                <div className="flex justify-center whitespace-nowrap overflow-hidden">
-                    {
-                        props.cardapio.map((teste: any) => {
-                            return (
-                                <Bars key={teste.ses_id} name={teste.ses_nome} cor={teste.ses_cor}/>
-                            );
-                        })
-                    }
+                <div className="whitespace-nowrap overflow-hidden">
+                    <Carousel
+                        autoPlay={true} infiniteLoop={true} showArrows={false} showIndicators={false} showStatus={false}
+                        // @ts-ignore
+                        renderItem={renderCarouselItem}>
+                        {props.cardapio.slice(0, 3).map((teste: any) => (
+                            <Bars
+                                key={teste.ses_id}
+                                name={teste.ses_nome}
+                                cor={teste.ses_cor}
+                            />
+                        ))}
+                    </Carousel>
                 </div>
-
                 <div className="flex justify-center align-middle items-center">
                     {
 
@@ -81,9 +91,7 @@ const Home: NextPage = (props: any) => {
                                sectionCards={props.promocao.produtos}/>
 
                     }
-
                 </div>
-
                 {
 
                     props.cardapio.map((teste: any) => {
@@ -95,7 +103,6 @@ const Home: NextPage = (props: any) => {
                 }
                 <CartIcon/>
             </main>
-
         </div>
     );
 };
