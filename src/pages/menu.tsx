@@ -56,14 +56,6 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage = (props: any) => {
-    const renderCarouselItem = (item: React.ReactNode, options: { isSelected: boolean }) => {
-        return (
-            <div className={`custom-slide ${options.isSelected ? 'active' : ''}`}>
-                {item}
-            </div>
-        );
-    };
-
     return (
         <div className="bg-black-500">
             <header>
@@ -72,9 +64,7 @@ const Home: NextPage = (props: any) => {
             <main>
                 <div className="whitespace-nowrap overflow-hidden">
                     <Carousel
-                        autoPlay={true} infiniteLoop={true} showArrows={false} showIndicators={false} showStatus={false}
-                        // @ts-ignore
-                        renderItem={renderCarouselItem}>
+                        autoPlay={true} infiniteLoop={true} showArrows={false} showIndicators={false} showStatus={false}>
                         {props.cardapio.slice(0, 3).map((teste: any) => (
                             <Bars
                                 key={teste.ses_id}
