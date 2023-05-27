@@ -64,8 +64,8 @@ const Home: NextPage = (props: any) => {
             <main>
                 <div className="whitespace-nowrap overflow-hidden">
                     <Carousel
-                        autoPlay={true} infiniteLoop={true} showArrows={false} showIndicators={false} showStatus={false}>
-                        {props.cardapio.slice(0, 3).map((teste: any) => (
+                        autoPlay={true} infiniteLoop={true} showThumbs={false} showArrows={false} showIndicators={false} showStatus={false}>
+                        {props.cardapio.map((teste: any) => (
                             <Bars
                                 key={teste.ses_id}
                                 name={teste.ses_nome}
