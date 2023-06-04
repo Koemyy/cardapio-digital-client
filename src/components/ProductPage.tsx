@@ -2,7 +2,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import {ShoppingBag} from 'phosphor-react';
 import Link from 'next/link';
 import {ArrowCircleLeft} from 'phosphor-react';
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {CartContext} from '../Service/contextService';
 
 interface ProductsContent {
@@ -26,7 +26,8 @@ interface Tags {
 }
 
 function ProductPage({name, price, oldPrice, description, img, ingredient, tag, serve}: ProductsContent) {
-    const [counter, setCounter] = useState(1);
+    const [counter, setCounter] = useState<number>(1);
+    let [precoTotal, setPrecoTotal] = useState(price);
 
     const {addItem} = useContext(CartContext);
     //increase counter
@@ -37,8 +38,17 @@ function ProductPage({name, price, oldPrice, description, img, ingredient, tag, 
     const decrease = () => {
         if (counter > 1) {
             setCounter(count => count - 1);
+            
         }
     };
+
+    function arrumaPreco(qtd: number){
+        setPrecoTotal(price * qtd)
+    }
+
+    useEffect(()=>{
+        arrumaPreco(counter)
+    }, [counter])
 
     return (
         <section className="lg:flex lg:items-center lg:justify-center bg-black-500">
@@ -101,7 +111,8 @@ function ProductPage({name, price, oldPrice, description, img, ingredient, tag, 
                                 <button
                                     className="flex bottom-0 right-0 absolute mr-3 text-center cursor-pointer bg-orange-500 md:py-3 md:px-5 py-2 px-3 rounded-3xl align-middle"
                                     onClick={() => {
-                                        addItem(name, price)
+                                        addItem(name, precoTotal, counter)
+                                        setCounter(1)
                                     }}>
                                     <label
                                         className="flex justify-center items-center text-white-300 text-sm md:text-3xl"><ShoppingBag

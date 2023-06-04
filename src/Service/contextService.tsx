@@ -15,7 +15,7 @@ interface itemCarrinho extends Item {
 //interface que especifica o tipo do meu context
 interface CartContextData {
     items: Item[];
-    addItem: (name: string, price: number) => void;
+    addItem: (name: string, price: number, contador: number) => void;
     removeItem: (id: string) => void;
     getTotal: () => number;
     getItemsArray: () => { id: string, name: string, price: number, contador: number }[];
@@ -36,20 +36,22 @@ export const CartContext = createContext<CartContextData>({
 export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({children}) => {
     const [items, setItems] = useState<itemCarrinho[]>([]);
 
-    const addItem = (name: string, price: number) => {
+    const addItem = (name: string, price: number, contador : number) => {
         const item: Item = {id: name, name: name, price: price}
 
+        //acha se o item jaexiste na lista
         const indexItem = items.findIndex((i) => i.id === item.id)
 
+        //se o itm existir aumenta a quantidade e o preço
         if (indexItem >= 0) {
             const itensNovos = [...items]
-            itensNovos[indexItem].contador++;
-            itensNovos[indexItem].price += itensNovos[indexItem].price;
+            itensNovos[indexItem].contador += contador;
+            itensNovos[indexItem].price += price;
 
             setItems(itensNovos);
         } else {
 
-            setItems([...items, {...item, contador: 1}]);
+            setItems([...items, {...item, contador}]);
         }
 
 

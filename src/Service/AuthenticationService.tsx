@@ -1,37 +1,30 @@
-import {useState} from "react";
-import {Methods} from "./CookieService";
+import { save} from "./CookieService";
 
-interface token {
-    cli_token: string
-    message: string
+interface Produto {
+    ped_id: number
+    cli_id:  number
+    pro_id: number
+    ped_status : string
 }
 
-export async function BuscarToken(cli_nome: string | null): Promise<string | any> {
+export async function salvarCompra({ped_id,cli_id, pro_id, ped_status}: Produto) {
 
-    await fetch('https://cardapio-digital-api.onrender.com/cliente', {
+    console.log('chegou na chamada')
+    const url = 'http://localhost:3000/actions/salvarCompra';
+
+    await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            cli_nome
+            ped_id,cli_id, pro_id, ped_status
         })
-    })
-        .then((result) => {
-            return result.json();
-        })
-        .then(({cli_token, message}: token) => {
-
-            if (cli_token == undefined || cli_token == null) {
-                throw new Error(message);
-            }
-            Methods.save("token_key", cli_token);
-            return cli_token.toString();
-        });
+    }).catch((err) => err.message)
 
 }
 
-
+//localhost:3000/actions/salvarCompra
 export async function BuscarSessao(cli_token: string | null): Promise<string | null> {
     /*Para testes locais usar http://localhost:3000/cliente/autenticar/?cli_token=*/
 
@@ -40,53 +33,14 @@ export async function BuscarSessao(cli_token: string | null): Promise<string | n
     const webToken: string | null = await fetch(url)
         .then((result) => {
             const resultJson = result.json();
-            if (!result.statusText) {
-                throw new Error("Usuário ou mesa não existe");
-            }
             return resultJson !== null ? resultJson : "";
 
         }).then(({webToken}) => {
-            Methods.save("webToken", webToken);
+            save("webToken", webToken);
             return webToken;
 
-        }).catch((error) => {
-            console.log(error.message);
-            throw new Error(error.message);
         })
 
     return webToken;
 
-
-}
-
-
-export function UseSession() {
-    const [loanding, setLoanding] = useState<boolean>(true);
-    const [dados, setDados] = useState<string | null>("");
-    const [error, setError] = useState<boolean>(false);
-
-    BuscarSessao(Methods.get("token_key"))
-        .then((response) => {
-            setDados(response);
-
-        }).catch((err) => {
-        console.log(err.message);
-        setError(true);
-
-    }).finally(() => {
-        setLoanding(false);
-    })
-
-    return {
-        dados,
-        error,
-        loanding
-    }
-}
-
-export const obetemSession = async (mesa: string) => {
-    await BuscarToken(mesa)
-        .then(() => {
-            BuscarSessao(Methods.get("token_key"))
-        });
 }

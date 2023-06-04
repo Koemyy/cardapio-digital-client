@@ -1,8 +1,9 @@
 import {useContext, useState} from 'react';
-import Payment from '../components/Payment';
+import OrdersPaymentStep from '../components/OrdersPaymentStep';
 import Link from 'next/link';
 import {ArrowCircleLeft} from 'phosphor-react';
 import {CartContext} from '../Service/contextService';
+import { salvarCompra } from '../Service/AuthenticationService';
 
 interface CardsContent {
     id: string,
@@ -21,6 +22,10 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
     const itens = getItemsArray()
 
     function openPaymentHandler() {
+
+        itens.map((item)=>{
+            salvarCompra({ped_id: 1, cli_id:1, pro_id: 3, ped_status:'fim'})
+        })
         setPaymentIsOpen(true);
         // @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -47,29 +52,28 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
                     <div
                         className="flex justify-between pt-5 underline underline-offset-4 decoration-orange-500 px-5 pb-3">
                         <p onClick={closePaymentHandler}
-                           className="text-white-300 cursor-pointer md:text-3xl">Selecionados</p>
+                           className="text-white-300 cursor-pointer md:text-4xl">Selecionados</p>
                         <p onClick={openPaymentHandler}
-                           className="text-white-300 cursor-pointer md:text-3xl">Pedidos</p>
+                           className="text-white-300 cursor-pointer md:text-4xl">Pedidos</p>
                     </div>
                 </div>
                 <div id="hidde">
-
-                    <div className="text-white-300 md:text-xl">
+                    <div className="text-white-300 md:text-xl py-3 px-5">
                         {
                             itens.map((item, key) => {
                                 return (
                                     <ul key={item.id}>
                                         <li key={key} className="flex items-center mb-2">
-                                            <div className="w-1/2">{item.name}</div>
-                                            <div className="w-1/4 text-right">
-                                                R${item.price.toFixed(2)}
+                                            <div className="w-1/2 md:text-2xl">{item.name}</div>
+                                            <div className="w-1/4 md:text-2xl text-right">
+                                                R$ {item.price.toFixed(2)}
                                             </div>
-                                            <div className="w-1/4 text-right">
+                                            <div className="w-1/4 md:text-2xl text-right">
                                                 {item.contador}
                                             </div>
                                             <div className="w-1/4 text-right">
                                                 <button
-                                                    className="bg-red-500 text-white p-1 rounded-md"
+                                                    className="md:text-xl text-white p-1 rounded-md"
                                                     onClick={() => removeItem(item.id)}>
                                                     Remover
                                                 </button>
@@ -95,12 +99,12 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
                     </div>
                     <div className="pt-3 text-white-300">
                         <div className="flex justify-between pt-3 pb-2 text-sm">
-                            <p>Subtotal</p>
-                            <p>{getTotal().toFixed(2)}</p>
+                            <p className="md:text-xl">Subtotal</p>
+                            <p className="md:text-xl">R$ {getTotal().toFixed(2)}</p>
                         </div>
                         <div className="flex justify-between text-2xl">
                             <p className="md:text-4xl">Total</p>
-                            <p className="text-green-500">{getTotal().toFixed(2)}</p>
+                            <p className="text-green-500 md:text-3xl">R$ {getTotal().toFixed(2)}</p>
                         </div>
                     </div>
                     <div className="block h-[1px] border-0 border-t border-solid border-grey-300 mt-1 p-0"></div>
@@ -117,7 +121,7 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
                 </div>
             </div>
             {isPayment && (
-                <Payment/>
+                <OrdersPaymentStep/>
             )}
         </div>
     );

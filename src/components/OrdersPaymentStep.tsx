@@ -1,8 +1,8 @@
 import {useContext, useState} from 'react';
-import PopUp from '../components/PopUp';
+import PaymentOptions from './PaymentOptions';
 import {CartContext} from '../Service/contextService';
 
-function Payment() {
+function OrdersPaymentStep() {
     const {getItemsArray, getTotal} = useContext(CartContext)
     const itens = getItemsArray()
     const [showPopUp, setPopUpIsOpen] = useState(false);
@@ -18,15 +18,15 @@ function Payment() {
     return (
         <div onMouseLeave={closePopUpHandler} className="justify-center items-center bg-black-500">
             <div className="mx-5">
-                <div className="text-white-300 md:text-xl">
+                <div className="text-white-300 md:text-xl px-5 py-3">
                     {
                         itens.map((item, key) => {
                             return (
                                 <ul key={item.id}>
                                     <li key={key} className="flex items-center mb-2">
-                                        <div className="w-1/2">{item.name}</div>
-                                        <div className="w-1/4 text-right">
-                                            R${item.price.toFixed(2)}
+                                        <div className="w-1/2 md:text-2xl">{item.name}</div>
+                                        <div className="w-1/4 text-right md:text-2xl pr-10 right-0 fixed">
+                                            R$ {item.price.toFixed(2)}
                                         </div>
                                     </li>
                                 </ul>
@@ -35,17 +35,17 @@ function Payment() {
                     }
                 </div>
                 <div className="pt-3 text-white-300">
-                    <div className="flex justify-between pt-3 pb-2 text-sm">
+                    <div className="flex justify-between pt-3 pb-2 md:text-xl text-sm">
                         <p>Subtotal</p>
-                        <p>{getTotal().toFixed(2)}</p>
+                        <p>R$ {getTotal().toFixed(2)}</p>
                     </div>
-                    <div className="flex justify-between pb-2 text-sm">
+                    <div className="flex justify-between pb-2 md:text-xl text-sm">
                         <p>Taxa de serviço</p>
-                        <p>R$ 16,00</p>
+                        <p>R$ 00,0</p>
                     </div>
                     <div className="flex justify-between text-2xl">
                         <p className="md:text-4xl">Total</p>
-                        <p className="text-green-500 md:text-3xl">{getTotal().toFixed(2)}</p>
+                        <p className="text-green-500 md:text-3xl">R$ {getTotal().toFixed(2)}</p>
                     </div>
                 </div>
                 <div className="block h-[1px] border-0 border-t border-solid border-grey-300 mt-1 p-0"></div>
@@ -57,10 +57,10 @@ function Payment() {
                 </div>
             </div>
             {showPopUp && (
-                <PopUp/>
+                <PaymentOptions/>
             )}
         </div>
     );
 }
 
-export default Payment;
+export default OrdersPaymentStep;

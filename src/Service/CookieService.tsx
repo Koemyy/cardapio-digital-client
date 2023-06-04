@@ -1,4 +1,4 @@
-import nookies, {destroyCookie, setCookie} from 'nookies';
+import nookies, {destroyCookie, parseCookies, setCookie} from 'nookies';
 
 const ACESS_TOKEN = "ACESS_TOKEN";
 
@@ -18,16 +18,6 @@ export const Methods = {
             });
         }
     },
-    save(chave: string, valor: string) {
-        if (valor != null || valor != undefined) {
-
-            setCookie(null, chave, valor, {
-                maxAge: ONE_DAY,
-                path: '/',
-            });
-        }
-    },
-
     delete(chave: string) {
 
         destroyCookie(null, chave, {
@@ -35,12 +25,24 @@ export const Methods = {
         });
     },
 
-    get(chave: string): string | null {
-        const resp: string | null = nookies.get(null)[chave];
-        return resp;
-    }
+   
 
 };
+
+export function get(): string | null {
+    const cookies = parseCookies(null);
+    return cookies['webToken'];
+}
+
+export function save(chave: string, valor: string) {
+    if (valor != null || valor != undefined) {
+
+        setCookie(null, chave, valor, {
+            maxAge: ONE_DAY,
+            path: '/',
+        });
+    }
+}
 
 
 export default Methods;
