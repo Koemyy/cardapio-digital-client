@@ -2,7 +2,6 @@ import {Property} from 'csstype';
 import Color = Property.Color;
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import Link from 'next/link';
-import {Carousel} from "react-responsive-carousel";
 
 interface BarsSection {
     name: string,
@@ -12,7 +11,7 @@ interface BarsSection {
 function Bars({name, cor}: BarsSection) {
     return (
         <div className="py-5 inline-block hover:text-xl ease-in-out duration-300 cursor-pointer">
-            <Link href={`#${name}`}>
+            <Link key={name} href={`#${name}`}>
                 <p style={{textDecorationColor: cor}}
                    className="text-white-300 px-2 underline underline-offset-8 md:text-xl">{name}</p>
             </Link>
