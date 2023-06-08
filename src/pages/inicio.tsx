@@ -21,12 +21,14 @@ export default function Index({ mesa, token }: IndexProps) {
           return
         }
         throw Error('token invalido')
-        
+
       })
       .catch(() => router.push('/semToken'))
   }, []);
 
-  return <div>Aguardando verificação...</div>;
+  return <div className="flex justify-center items-center h-screen">
+    <p className="text-white-300 text-xl">Aguardando verificação</p>
+  </div>;
 }
 
 export async function getServerSideProps({ query }: { query: ParsedUrlQuery }): Promise<{ props: IndexProps }> {
