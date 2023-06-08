@@ -5,15 +5,15 @@ import { ParsedUrlQuery } from "querystring";
 import { get, save} from "../Service/CookieService";
 
 type IndexProps = {
-  mesa: string;
+  cli_id: number;
   token: string;
 };
 
-export default function Index({ mesa, token }: IndexProps) {
+export default function Index({ cli_id, token }: IndexProps) {
   const router = useRouter();
 
   useEffect(() => {
-    save('cli_cliente', mesa)
+    save('cli_cliente', cli_id.toString())
     BuscarSessao(token)
       .then(() =>{
         if(get('webToken')) {
@@ -32,12 +32,14 @@ export default function Index({ mesa, token }: IndexProps) {
 }
 
 export async function getServerSideProps({ query }: { query: ParsedUrlQuery }): Promise<{ props: IndexProps }> {
-  const mesa = query.mesa as string;
+  const id = query.id as string;
   const token = query.token as string;
 
+
+  const cli_id : number = parseInt(id);
   return {
     props: {
-      mesa,
+      cli_id,
       token,
     },
   };
