@@ -6,6 +6,7 @@ import {useContext, useEffect, useState} from 'react';
 import {CartContext} from '../Service/contextService';
 
 interface ProductsContent {
+    id: number
     name: string,
     price: number,
     oldPrice: number,
@@ -25,7 +26,7 @@ interface Tags {
     tag_cor: string
 }
 
-function ProductPage({name, price, oldPrice, description, img, ingredient, tag, serve}: ProductsContent) {
+function ProductPage({id, name, price, oldPrice, description, img, ingredient, tag, serve}: ProductsContent) {
     const [counter, setCounter] = useState<number>(1);
     let [precoTotal, setPrecoTotal] = useState(price);
 
@@ -111,7 +112,7 @@ function ProductPage({name, price, oldPrice, description, img, ingredient, tag, 
                                 <button
                                     className="flex bottom-0 right-0 absolute mr-3 text-center cursor-pointer bg-orange-500 md:py-3 md:px-5 py-2 px-3 rounded-3xl align-middle"
                                     onClick={() => {
-                                        addItem(name, precoTotal, counter)
+                                        addItem(id, name, precoTotal, counter)
                                         setCounter(1)
                                     }}>
                                     <label

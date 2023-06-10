@@ -3,10 +3,11 @@ import OrdersPaymentStep from '../components/OrdersPaymentStep';
 import Link from 'next/link';
 import {ArrowCircleLeft} from 'phosphor-react';
 import {CartContext} from '../Service/contextService';
-import { salvarCompra } from '../Service/AuthenticationService';
+import { salvarCompra } from '../Service/ProductService';
+import { get, getNumber } from '../Service/CookieService';
 
 interface CardsContent {
-    id: string,
+    id: number,
     name: string,
     price: string,
     oldPrice: string,
@@ -22,9 +23,9 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
     const itens = getItemsArray()
 
     function openPaymentHandler() {
-
+        const cli_cliente :number = getNumber('cli_cliente');
         itens.map((item)=>{
-            salvarCompra({ped_id: 1, cli_id:1, pro_id: 3, ped_status:'fim'})
+            salvarCompra({cli_id: cli_cliente, pro_id: item.id, ped_status:'A'})
         })
         setPaymentIsOpen(true);
         // @typescript-eslint/ban-ts-comment

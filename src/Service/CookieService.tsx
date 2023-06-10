@@ -29,9 +29,14 @@ export const Methods = {
 
 };
 
-export function get(): string | null {
+export function get(chave: string): string | null {
     const cookies = parseCookies(null);
-    return cookies['webToken'];
+    return cookies[chave];
+}
+
+export function getNumber(chave: string): number {
+    const cookies = parseCookies(null);
+    return parseInt(cookies[chave]);
 }
 
 export function save(chave: string, valor: string) {

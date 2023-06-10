@@ -27,6 +27,7 @@ export function ProductPageContent(props: any) {
                          serve={props.pro_serve}
                          tag={props.tags}
                          ingredient={props.ingredientes}
+                         id ={props.pro_id}
             />
 
         </div>

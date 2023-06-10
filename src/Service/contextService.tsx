@@ -3,7 +3,7 @@ import Methods from "./CookieService";
 import {parseCookies} from "nookies";
 
 interface Item {
-    id: string;
+    id: number;
     name: string;
     price: number;
 }
@@ -15,10 +15,10 @@ interface itemCarrinho extends Item {
 //interface que especifica o tipo do meu context
 interface CartContextData {
     items: Item[];
-    addItem: (name: string, price: number, contador: number) => void;
-    removeItem: (id: string) => void;
+    addItem: (id: number, name: string, price: number, contador: number) => void;
+    removeItem: (id: number) => void;
     getTotal: () => number;
-    getItemsArray: () => { id: string, name: string, price: number, contador: number }[];
+    getItemsArray: () => { id: number, name: string, price: number, contador: number }[];
 }
 
 //cria meu contexto com especificao default
@@ -36,8 +36,8 @@ export const CartContext = createContext<CartContextData>({
 export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({children}) => {
     const [items, setItems] = useState<itemCarrinho[]>([]);
 
-    const addItem = (name: string, price: number, contador : number) => {
-        const item: Item = {id: name, name: name, price: price}
+    const addItem = (id: number, name:string, price: number, contador : number) => {
+        const item: Item = {id: id, name: name, price: price}
 
         //acha se o item jaexiste na lista
         const indexItem = items.findIndex((i) => i.id === item.id)
@@ -72,7 +72,7 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({children}) 
         Methods.saveAll('cart', json)
     }, [items]);
 
-    const removeItem = (id: string) => {
+    const removeItem = (id: number) => {
         const item = items.find((item) => item.id === id);
 
         const indexItem = items.findIndex((i) => i.id === item?.id);
