@@ -13,7 +13,7 @@ export default function Index({ cli_id, token }: IndexProps) {
   const router = useRouter();
 
   useEffect(() => {
-    save('cli_cliente', cli_id.toString())
+    save('cli_id', cli_id.toString())
     BuscarSessao(token)
       .then(() =>{
         if(get('webToken')) {

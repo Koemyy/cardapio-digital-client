@@ -23,9 +23,9 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
     const itens = getItemsArray()
 
     function openPaymentHandler() {
-        const cli_cliente :number = getNumber('cli_cliente');
+        const cli_cliente :number = getNumber('cli_id');
         itens.map((item)=>{
-            salvarCompra({cli_id: cli_cliente, pro_id: item.id, ped_status:'A'})
+            salvarCompra({cli_id: cli_cliente, pro_id: item.id, ped_status:'A', ped_quantidade : item.contador})
         })
         setPaymentIsOpen(true);
         // @typescript-eslint/ban-ts-comment
