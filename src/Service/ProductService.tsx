@@ -7,7 +7,7 @@ interface Produto {
 
 export async function salvarCompra({cli_id, pro_id, ped_status, ped_quantidade}: Produto) {
 
-    const url = 'http://localhost:3000/actions/salvarCompra';
+    const url = 'https://cardapio-digital-api.onrender.com/actions/salvarCompra';
    
     await fetch(url, {
         method: 'POST',
