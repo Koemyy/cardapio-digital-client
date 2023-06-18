@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {ArrowCircleLeft} from 'phosphor-react';
 import {CartContext} from '../Service/contextService';
 import { salvarCompra } from '../Service/ProductService';
-import { get, getNumber } from '../Service/CookieService';
+import Methods, { get, getNumber } from '../Service/CookieService';
 
 interface CardsContent {
     id: number,
@@ -18,15 +18,20 @@ interface CardsContent {
 
 function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
     const [isPayment, setPaymentIsOpen] = useState(false);
-    const {getItemsArray, removeItem, getTotal} = useContext(CartContext)
+    const {getItemsArray, removeItem,removeAll, getTotal} = useContext(CartContext)
 
     const itens = getItemsArray()
 
     function openPaymentHandler() {
         const cli_cliente :number = getNumber('cli_id');
         itens.map((item)=>{
-            salvarCompra({cli_id: cli_cliente, pro_id: item.id, ped_status:'A', ped_quantidade : item.contador})
+            salvarCompra({cli_id: cli_cliente, pro_id: item.id, ped_status:'A', ped_quantidade : item.contador}).then(()=>{
+
+            })
         })
+
+        removeAll();
+        Methods.delete('cart');
         setPaymentIsOpen(true);
         // @typescript-eslint/ban-ts-comment
         // @ts-ignore
