@@ -27,14 +27,19 @@ function OrdersPaymentStep() {
     const getTotal =  itens.reduce((total, item) => total + parseFloat(item.ped_preco), 0);
 
     useEffect(() => {
-        async function fetchMesas() {
+        async function fetchPedidosorCliente() {
             const cli_cliente :number = getNumber('cli_id');
             const data = await buscarPedidosByCliente(cli_cliente);
-            console.log(data)
             setItens(data);
         }
 
-        fetchMesas();
+        fetchPedidosorCliente();
+        
+        const interval = setInterval(fetchPedidosorCliente, 2000);
+        return () => {
+            clearInterval(interval);
+        }
+
     }, [])
     return (
         <div onMouseLeave={closePopUpHandler} className="justify-center items-center bg-black-500">
