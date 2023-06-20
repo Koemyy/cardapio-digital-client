@@ -1,10 +1,19 @@
-import {useContext, useState} from 'react';
+import {useEffect, useState} from 'react';
 import PaymentOptions from './PaymentOptions';
-import {CartContext} from '../Service/contextService';
+import { buscarPedidosByCliente } from '../Service/ProductService';
+import { getNumber } from '../Service/CookieService';
 
-function OrdersPaymentStep() {
-    const {getItemsArray, getTotal} = useContext(CartContext)
-    const itens = getItemsArray()
+interface Produto {
+    cli_id:  number
+    pro_id: number
+    pro_nome : string
+    ped_quantidade : string,
+    ped_preco : string
+}
+
+
+function OrdersPaymentStep() { 
+    const [itens, setItens] = useState<Produto[]>([]);
     const [showPopUp, setPopUpIsOpen] = useState(false);
 
     function openPopUpHandler() {
@@ -15,6 +24,18 @@ function OrdersPaymentStep() {
         setPopUpIsOpen(false);
     }
 
+    const getTotal =  itens.reduce((total, item) => total + parseFloat(item.ped_preco), 0);
+
+    useEffect(() => {
+        async function fetchMesas() {
+            const cli_cliente :number = getNumber('cli_id');
+            const data = await buscarPedidosByCliente(cli_cliente);
+            console.log(data)
+            setItens(data);
+        }
+
+        fetchMesas();
+    }, [])
     return (
         <div onMouseLeave={closePopUpHandler} className="justify-center items-center bg-black-500">
             <div className="mx-5">
@@ -22,11 +43,14 @@ function OrdersPaymentStep() {
                     {
                         itens.map((item, key) => {
                             return (
-                                <ul key={item.id}>
+                                <ul key={item.pro_id}>
                                     <li key={key} className="flex items-center mb-2">
-                                        <div className="w-1/2 md:text-2xl">{item.name}</div>
+                                        <div className="w-1/2 md:text-2xl">{item.pro_nome}</div>
+                                        <div className="w-1/4 md:text-2xl text-right">
+                                            {item.ped_quantidade}
+                                            </div>
                                         <div className="w-1/4 text-right md:text-2xl pr-10 right-0 fixed">
-                                            R$ {item.price.toFixed(2)}
+                                            R$ {item.ped_preco}
                                         </div>
                                     </li>
                                 </ul>
@@ -35,17 +59,9 @@ function OrdersPaymentStep() {
                     }
                 </div>
                 <div className="pt-3 text-white-300">
-                    <div className="flex justify-between pt-3 pb-2 md:text-xl text-sm">
-                        <p>Subtotal</p>
-                        <p>R$ {getTotal().toFixed(2)}</p>
-                    </div>
-                    <div className="flex justify-between pb-2 md:text-xl text-sm">
-                        <p>Taxa de serviço</p>
-                        <p>R$ 00,0</p>
-                    </div>
                     <div className="flex justify-between text-2xl">
                         <p className="md:text-4xl">Total</p>
-                        <p className="text-green-500 md:text-3xl">R$ {getTotal().toFixed(2)}</p>
+                        <p className="text-green-500 md:text-3xl">R$ {getTotal.toFixed(2)}</p>
                     </div>
                 </div>
                 <div className="block h-[1px] border-0 border-t border-solid border-grey-300 mt-1 p-0"></div>
