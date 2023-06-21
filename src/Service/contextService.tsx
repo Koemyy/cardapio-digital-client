@@ -17,6 +17,7 @@ interface CartContextData {
     items: Item[];
     addItem: (id: number, name: string, price: number, contador: number) => void;
     removeItem: (id: number) => void;
+    removeAll: () => void;
     getTotal: () => number;
     getItemsArray: () => { id: number, name: string, price: number, contador: number }[];
 }
@@ -27,6 +28,8 @@ export const CartContext = createContext<CartContextData>({
     addItem: () => {
     },
     removeItem: () => {
+    },
+    removeAll: () => {
     },
     getTotal: () => 0,
     getItemsArray: () => [],
@@ -96,6 +99,10 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({children}) 
         }
     };
 
+    const removeAll = () => {
+        setItems([]);
+    };
+
     const getTotal = () => {
         return items.reduce((total, item) => total + item.price, 0);
     };
@@ -110,7 +117,7 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({children}) 
     };
 
     return (
-        <CartContext.Provider value={{items, addItem, removeItem, getTotal, getItemsArray}}>
+        <CartContext.Provider value={{items, addItem, removeItem,removeAll, getTotal, getItemsArray}}>
             {children}
         </CartContext.Provider>
     );
