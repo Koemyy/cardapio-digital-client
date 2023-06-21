@@ -1,18 +1,21 @@
 import {useContext, useState} from 'react';
-import PaymentOptions from './PaymentOptions';
+import Agradecimento from '../pages/agradecimento';
 import {CartContext} from '../Service/contextService';
-
+import {router} from "next/client";
 function OrdersPaymentStep() {
     const {getItemsArray, getTotal} = useContext(CartContext)
     const itens = getItemsArray()
     const [showPopUp, setPopUpIsOpen] = useState(false);
-
     function openPopUpHandler() {
         setPopUpIsOpen(true);
     }
 
     function closePopUpHandler() {
         setPopUpIsOpen(false);
+    }
+
+    function redirect() {
+        router.push('/agradecimento')
     }
 
     return (
@@ -50,15 +53,12 @@ function OrdersPaymentStep() {
                 </div>
                 <div className="block h-[1px] border-0 border-t border-solid border-grey-300 mt-1 p-0"></div>
                 <div className="flex justify-center items-center pt-3">
-                    <button onClick={openPopUpHandler}
-                            className="border mt-3 border-1 rounded-full px-20 py-3 cursor-pointer" type="submit">
-                        <label className="text-white-300 text-lg md:text-2xl">Pagamento</label>
+                    <button onClick={redirect}
+                        className="border mt-3 border-1 rounded-full px-20 py-3 cursor-pointer" type="submit">
+                        <label className="text-white-300 text-lg md:text-2xl">Finalizar Compra</label>
                     </button>
                 </div>
             </div>
-            {showPopUp && (
-                <PaymentOptions/>
-            )}
         </div>
     );
 }
