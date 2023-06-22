@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import { buscarPedidosByCliente } from '../Service/ProductService';
 import { getNumber } from '../Service/CookieService';
-import {router} from "next/client";
+import { useRouter } from 'next/router';
 
 interface Produto {
     cli_id:  number
@@ -14,7 +14,7 @@ interface Produto {
 
 function OrdersPaymentStep() {
     const [itens, setItens] = useState<Produto[]>([]);
-
+    const router = useRouter();
     const getTotal =  itens.reduce((total, item) => total + parseFloat(item.ped_preco), 0);
 
     useEffect(() => {

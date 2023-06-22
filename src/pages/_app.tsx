@@ -6,14 +6,15 @@ import CartProvider from '../Service/contextService';
 import { parseCookies } from 'nookies';
 import { useRouter } from 'next/router';
 
-function MyApp({Component, pageProps}: AppProps) {
-    let router = useRouter();
+function MyApp({Component, pageProps, router }: AppProps) {
+    let routers = useRouter();
+    const { pathname } = router;
     useEffect(()=>{
         const cookies = parseCookies(null);
         const token = cookies['webToken'];
 
-        if (token == undefined && Component.name != 'Aguarde' ) {
-            router.push('/semToken');
+        if (token == undefined && (pathname !== '/agradecimento' && pathname != '/aguarde' ) ) {
+            routers.push('/semToken');
             return;
         }
         
