@@ -13,7 +13,7 @@ function MyApp({Component, pageProps, router }: AppProps) {
         const cookies = parseCookies(null);
         const token = cookies['webToken'];
 
-        if (token == undefined && (pathname !== '/agradecimento' && pathname != '/aguarde' ) ) {
+        if (token == undefined && (pathname !== '/agradecimento' && pathname != '/inicio' ) ) {
             routers.push('/semToken');
             return;
         }

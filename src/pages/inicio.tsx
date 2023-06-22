@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { BuscarSessao } from "../Service/AuthenticationService";
 import { ParsedUrlQuery } from "querystring";
@@ -11,7 +11,8 @@ type IndexProps = {
 
 export default function Index({ cli_id, token }: IndexProps) {
   const router = useRouter();
-
+  const [aguardandoVerificacao, setAguardandoVerificacao] = useState(true);
+  
   useEffect(() => {
     save('cli_id', cli_id.toString())
     BuscarSessao(token)
@@ -24,11 +25,16 @@ export default function Index({ cli_id, token }: IndexProps) {
 
       })
       .catch(() => router.push('/semToken'))
+      .finally(()=>setAguardandoVerificacao(false))
   }, []);
 
-  return <div className="flex justify-center items-center h-screen">
-    <p className="text-white-300 text-xl">Aguardando verificação</p>
-  </div>;
+  if (aguardandoVerificacao) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-white-300 text-xl">Aguardando verificação</p>
+      </div>
+    );
+  }
 }
 
 export async function getServerSideProps({ query }: { query: ParsedUrlQuery }): Promise<{ props: IndexProps }> {
