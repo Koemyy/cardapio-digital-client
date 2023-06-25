@@ -70,16 +70,16 @@ function CardsCarousel({name, price, oldPrice, img, id}: CardsContent) {
                                 return (
                                     <ul key={item.id}>
                                         <li key={key} className="flex items-center mb-2">
-                                            <div className="w-1/2 md:text-2xl">{item.name}</div>
+                                            <div className="md:w-1/4 md:text-2xl text-right">
+                                                {item.contador}x
+                                            </div>
+                                            <div className="w-1/2 pl-2 md:text-2xl">{item.name}</div>
                                             <div className="w-1/4 md:text-2xl text-right">
                                                 R$ {item.price.toFixed(2)}
                                             </div>
-                                            <div className="w-1/4 md:text-2xl text-right">
-                                                {item.contador}
-                                            </div>
-                                            <div className="w-1/4 text-right">
+                                            <div className="w-1/4 pl-2 text-right">
                                                 <button
-                                                    className="md:text-xl text-white p-1 rounded-md"
+                                                    className="md:text-xl p-1 rounded-md"
                                                     onClick={() => removeItem(item.id)}>
                                                     Remover
                                                 </button>
