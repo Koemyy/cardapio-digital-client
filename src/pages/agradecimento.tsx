@@ -8,7 +8,7 @@ function Agradecimento() {
         <div className="text-white-300 flex flex-col justify-center items-center h-screen">
             <h1 className="text-orange-400 mb-5 text-5xl font-bold pl-3 md:text-5xl">Rockland Bar</h1>
             <h1 className="text-xl">Agradece sua preferência!</h1>
-            <p className="mt-2">Volte sempre.</p>
+            <p className="mt-2">O garçom está a caminho de sua mesa.</p>
         </div>
     );
 }
