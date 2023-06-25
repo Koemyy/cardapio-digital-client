@@ -45,11 +45,11 @@ function OrdersPaymentStep() {
                             return (
                                 <ul key={item.pro_id}>
                                     <li key={key} className="flex items-center mb-2">
-                                        <div className="w-1/2 md:text-2xl">{item.pro_nome}</div>
-                                        <div className="w-1/4 md:text-2xl text-right">
-                                            {item.ped_quantidade}
+                                        <div className="md:w-1/4 md:text-2xl">
+                                            {item.ped_quantidade}x
                                         </div>
-                                        <div className="w-1/4 text-right md:text-2xl pr-10 right-0 fixed">
+                                        <div className="w-1/2 pl-1 md:text-2xl">{item.pro_nome}</div>
+                                        <div className="md:w-1/4 text-right md:text-2xl pr-10 right-0 fixed">
                                             R$ {item.ped_preco}
                                         </div>
                                     </li>
