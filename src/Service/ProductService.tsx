@@ -62,4 +62,24 @@ export async function AtualizarStatusPedidosByCliente(cli_id : number , ped_stat
     return response;
 }
 
+export async function AtualizarStatusPagamentoPedidosByCliente(cli_id : number , ped_status: string){
 
+    const url = 'https://cardapio-digital-api.onrender.com/actions/atualizarStatusPagementoPedido';
+   
+    const response = await fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            cli_id : cli_id,
+            ped_status: ped_status
+        })
+    })
+    .then((response)=>{
+        return response.json();
+    })
+    .catch((err) => err.message)
+
+    return response;
+}
