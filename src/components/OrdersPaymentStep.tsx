@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { AtualizarStatusPedidosByCliente, buscarPedidosByCliente } from '../Service/ProductService';
+import { AtualizarStatusPagamentoPedidosByCliente, buscarPedidosByCliente } from '../Service/ProductService';
 import { getNumber } from '../Service/CookieService';
 import { useRouter } from 'next/router';
 
@@ -35,7 +35,7 @@ function OrdersPaymentStep() {
 
     async function redirect() {
         const cli_id :number = getNumber('cli_id');
-        await AtualizarStatusPedidosByCliente(cli_id, "F");
+        await AtualizarStatusPagamentoPedidosByCliente(cli_id, "F");
 
         router.push('/agradecimento')
     }
