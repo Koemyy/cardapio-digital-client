@@ -3,11 +3,12 @@ interface Produto {
     pro_id: number
     ped_status : string
     ped_quantidade : number
+    ped_observacao: string
 }
 
-export async function salvarCompra({cli_id, pro_id, ped_status, ped_quantidade}: Produto) {
+export async function salvarCompra({cli_id, pro_id, ped_status, ped_quantidade, ped_observacao}: Produto) {
 
-    const url = 'https://cardapio-digital-api.onrender.com/actions/salvarCompra';
+const url = 'https://cardapio-digital-api.onrender.com/actions/salvarCompra';
    
     await fetch(url, {
         method: 'POST',
@@ -15,7 +16,7 @@ export async function salvarCompra({cli_id, pro_id, ped_status, ped_quantidade}:
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            cli_id, pro_id, ped_status, ped_quantidade
+            cli_id, pro_id, ped_status, ped_quantidade, ped_observacao
         })
     }).catch((err) => err.message)
 
