@@ -6,6 +6,7 @@ interface Item {
     id: number;
     name: string;
     price: number;
+    observacao: string
 }
 
 interface itemCarrinho extends Item {
@@ -19,7 +20,7 @@ interface CartContextData {
     removeItem: (id: number) => void;
     removeAll: () => void;
     getTotal: () => number;
-    getItemsArray: () => { id: number, name: string, price: number, contador: number }[];
+    getItemsArray: () => { id: number, name: string, price: number, contador: number, observacao: string }[];
 }
 
 //cria meu contexto com especificao default
@@ -39,10 +40,10 @@ export const CartContext = createContext<CartContextData>({
 export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({children}) => {
     const [items, setItems] = useState<itemCarrinho[]>([]);
 
-    const addItem = (id: number, name:string, price: number, contador : number) => {
-        const item: Item = {id: id, name: name, price: price}
+    const addItem = (id: number, name:string, price: number, contador : number, observacao: string) => {
+        const item: Item = {id: id, name: name, price: price, observacao: observacao}
 
-        //acha se o item jaexiste na lista
+        //acha se o item ja existe na lista
         const indexItem = items.findIndex((i) => i.id === item.id)
 
         //se o itm existir aumenta a quantidade e o preço
@@ -112,7 +113,8 @@ export const CartProvider: React.FC<React.PropsWithChildren<{}>> = ({children}) 
             id: item.id,
             name: item.name,
             price: item.price,
-            contador: item.contador
+            contador: item.contador,
+            observacao: item.observacao
         }));
     };
 
