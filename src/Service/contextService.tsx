@@ -15,7 +15,7 @@ interface itemCarrinho extends Item {
 //interface que especifica o tipo do meu context
 interface CartContextData {
     items: Item[];
-    addItem: (id: number, name: string, price: number, contador: number) => void;
+    addItem: (id: number, name: string, price: number, contador: number, observation: string) => void;
     removeItem: (id: number) => void;
     removeAll: () => void;
     getTotal: () => number;
