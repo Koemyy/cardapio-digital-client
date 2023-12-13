@@ -8,7 +8,7 @@ interface Produto {
 
 export async function salvarCompra({cli_id, pro_id, ped_status, ped_quantidade, ped_observacao}: Produto) {
 
-const url = 'https://cardapio-digital-api.onrender.com/actions/salvarCompra';
+const url = 'https://api-lcvn.onrender.com/actions/salvarCompra';
    
     await fetch(url, {
         method: 'POST',
@@ -24,7 +24,7 @@ const url = 'https://cardapio-digital-api.onrender.com/actions/salvarCompra';
 
 export async function buscarPedidosByCliente(cli_id : number) {
 
-    const url = 'https://cardapio-digital-api.onrender.com/actions/buscarTodosPedidos';
+    const url = 'https://api-lcvn.onrender.com/actions/buscarTodosPedidos';
    
     const response = await fetch(url, {
         method: 'POST',
@@ -43,7 +43,7 @@ export async function buscarPedidosByCliente(cli_id : number) {
 
 export async function AtualizarStatusPedidosByCliente(cli_id : number , ped_status: string){
 
-    const url = 'https://cardapio-digital-api.onrender.com/actions/atualizarPedidoByCliente';
+    const url = 'https://api-lcvn.onrender.com/actions/atualizarPedidoByCliente';
    
     const response = await fetch(url,{
         method: 'POST',
@@ -65,7 +65,7 @@ export async function AtualizarStatusPedidosByCliente(cli_id : number , ped_stat
 
 export async function AtualizarStatusPagamentoPedidosByCliente(cli_id : number , ped_status: string){
 
-    const url = 'https://cardapio-digital-api.onrender.com/actions/atualizarStatusPagementoPedido';
+    const url = 'https://api-lcvn.onrender.com/actions/atualizarStatusPagementoPedido';
    
     const response = await fetch(url,{
         method: 'POST',

@@ -14,7 +14,7 @@ interface Props extends GetStaticProps {
 
 export async function getStaticPaths() {
 
-	const produtos= await fetch('https://cardapio-digital-api.onrender.com/paths/')
+	const produtos= await fetch('https://api-lcvn.onrender.com/paths/')
         .then(response => response.json())
         .then((data) => {
             return data
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: Path) {
 	
-	const produto= await fetch(`https://cardapio-digital-api.onrender.com/produto/${context.params.id}`)
+	const produto= await fetch(`https://api-lcvn.onrender.com/produto/${context.params.id}`)
         .then(response => response.json())
         .then((data) => {
             return data

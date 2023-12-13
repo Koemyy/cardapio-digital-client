@@ -4,7 +4,7 @@ export async function BuscarSessao(cli_token: string | null): Promise<string | n
     /*Para testes locais usar http://localhost:3000/cliente/autenticar/?cli_token=*/
 
 
-    const url = 'https://cardapio-digital-api.onrender.com/cliente/autenticar/?cli_token=' + cli_token;
+    const url = 'https://api-lcvn.onrender.com/cliente/autenticar/?cli_token=' + cli_token;
 
     const webToken: string | null = await fetch(url)
         .then((result) => {

@@ -35,13 +35,13 @@ interface Tag {
 
 export async function getStaticProps() {
 
-    const cardapio = await fetch('https://cardapio-digital-api.onrender.com/cardapio/')
+    const cardapio = await fetch('https://api-lcvn.onrender.com/cardapio/')
         .then(response => response.json())
         .then((data) => {
             return data
         });
 
-    const promocao = await fetch('https://cardapio-digital-api.onrender.com/cardapio/promocoes')
+    const promocao = await fetch('https://api-lcvn.onrender.com/cardapio/promocoes')
         .then(response => response.json())
         .then((data) => {
             return data
